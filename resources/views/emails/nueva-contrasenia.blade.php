@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Correo de Recupera Contraseña</title>
+    <title>Correo de Recuperacion de Contraseña</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,20 +46,19 @@
     <div class="container">
         <div class="header">
 
-            <h3>NUEVA CONTRASEÑA RUWANI MDSJL</h3>
+            <h3>NUEVA CONTRASEÑA LURICHAMBA MDSJL</h3>
         </div>
         <p>¡Hola!</p>
 
 
-        <p>DE LA WEB RUWANI MDSJL LE REMITIMOS SU NUEVA CONTRASEÑA: {{ $contrasenia }}</p>
+        <p>DE LA WEB LURICHAMBA MDSJL LE REMITIMOS SU NUEVA CONTRASEÑA: {{ $contrasenia }}</p>
 
         <p>Para comenzar, te invitamos a visitar nuestro sitio web:</p>
-        <p><a href="{{ route('portal-login.index') }}">ruwani.munisjl.gob.pe/</a></p>
+        <p><a href="{{ route('portal-login.index') }}">lurichamba.munisjl.gob.pe/</a></p>
 
 
         <div class="footer">
-            <p>Gracias por unirte a nosotros,</p>
-            <p>El Equipo de TI</p>
+            <p>Gracias por unirte a nosotros,</p>         
         </div>
     </div>
 </body>

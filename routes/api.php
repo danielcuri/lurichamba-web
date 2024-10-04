@@ -29,7 +29,9 @@ Route::group([
     Route::post('me', [AutenticacionController::class, 'me']);
     Route::post('registrar', [AutenticacionController::class, 'registrarse']);
     Route::post('verificar-codigo', [AutenticacionController::class, 'verifyCode']);
+    Route::post('sendEmailEntrepreneur', [AutenticacionController::class, 'sendEmailEntrepreneur']);
 });
+
 
 
 Route::group([   

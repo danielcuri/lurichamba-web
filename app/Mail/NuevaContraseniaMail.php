@@ -24,7 +24,7 @@ class NuevaContraseniaMail extends Mailable implements ShouldQueue
     {
         $contrasenia = $this->contrasenia;
 
-        return $this->subject('RUWANI - NUEVA CONTRASEÑA')
+        return $this->subject('LURICHAMBA - NUEVA CONTRASEÑA')
             ->view('emails.nueva-contrasenia', compact('contrasenia')); // Vista del correo (opcional)
     }
 }

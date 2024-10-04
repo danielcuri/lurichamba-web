@@ -17,11 +17,13 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use App\Models\Test;
+use App\Mail\EntrepreneurNotification;
+use Illuminate\Support\Facades\Mail;
 class AutenticacionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.verify', ['except' => ['login', 'registrarse', 'verifyCode']]);
+        $this->middleware('jwt.verify', ['except' => ['login', 'registrarse', 'verifyCode','sendEmailEntrepreneur']]);
         // $this->middleware('JwtMiddleware', ['except' => ['login', 'register']]); // Reemplaza 'auth:api' con 'JwtMiddleware'
 
     }
@@ -227,6 +229,62 @@ class AutenticacionController extends Controller
                 'respuesta' => true,
                 'codigo' => 200,
                 'mensaje' => 'Se registro correctamente.'
+            ], 200);
+        } catch (Error $e) {
+
+            return response()->json([
+                'respuesta' => false,
+                'codigo' => 500,
+                'mensaje' => 'Error en el servidor',
+            ], 500);
+        }
+    }
+    public function sendEmailEntrepreneur(Request $request){
+        try {
+            $validador = Validator::make($request->all(), [ 
+                'numero_celular' => 'required|digits:9',
+                'nombres' => 'required',
+                'apellido_paterno' => 'required',
+                'apellido_materno' => 'required',               
+                'email' => 'required|email|unique:personas,email',               
+                'aceptacion_termino' => 'required'
+            ], [             
+                'numero_celular.required' => 'No ha ingresado su número de celular',
+                'numero_celular.digits' => 'Su número debe tener 9 dígitos',
+                'nombres.required' => 'No ha ingresado sus nombres',
+                'apellido_paterno.required' => 'No ha ingresado su apellido paterno',
+                'apellido_materno.required' => 'No ha ingresado su apellido materno',
+                'email.required' => 'No ha ingresado su correo electronico',
+                'email.email' => 'El correo electronico no es valido',
+                'email.unique' => 'Este correo electronico ya se encuentra registrado',
+                'aceptacion_termino.required' => 'No acepto los Terminos y Condiciones'
+
+            ]);
+
+            // Validate the request
+            if ($validador->fails()) {
+                return response()->json([
+                    'codigo' => 422,
+                    'respuesta' => false,
+                    'errores' => $validador->errors(),
+                ], 422);
+            }
+
+            $data = $request->all();
+            //envio de correo
+            $fullName = trim($data['nombres'] . ' ' . $data['apellido_paterno'] . ' ' . $data['apellido_materno']);
+            $email = $data['email'];
+            $phoneNumber = $data['numero_celular'];
+
+            $datos_email = new EntrepreneurNotification($fullName,$email,$phoneNumber);
+            
+            Mail::to(env('MAIL_USERNAME'))->queue($datos_email);
+          
+            return response()->json([
+                'respuesta' => true,
+                'codigo' => 200,
+                'mensaje' => 'Se registro correctamente.',
+                'body' =>$data
             ], 200);
         } catch (Error $e) {
 
