@@ -134,6 +134,8 @@ Route::post('admin-servicio/{admin_servicio}/activar', [ServicioController::clas
 Route::resource('admin-servicio',    ServicioController::class)->names('servicio');
 
 
+Route::post('admin-usuarios-registrados/guardar', [UsuarioRegistradoController::class, 'guardarPersona'])->name('usuario-registrado.guardarPersona');
+
 Route::put('admin-usuarios-registrados/{usuario_registrado}/updaterol', [UsuarioRegistradoController::class, 'updaterol'])->name('usuario-registrado.updaterole');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/rechazar-persona', [UsuarioRegistradoController::class, 'rechazarProcesoPersona'])->name('usuario-registrado.rechazarProcesoPersona');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/validar-persona', [UsuarioRegistradoController::class, 'validarProcesoPersona'])->name('usuario-registrado.validarProcesoPersona');
@@ -156,3 +158,4 @@ Route::get('get-areas', [PortalAdministracionController::class, 'getAreas'])->na
 Route::post('publicar', [PortalAdministracionController::class, 'publicarServicio'])->name('publicar');
 
 Route::get('sorteo',[InicioController::class, 'sorteoIndex']);
+Route::get('get-servicios', [UsuarioRegistradoController::class, 'getServicios'])->name('getServicios');

@@ -109,6 +109,73 @@
 
                             </div>
                         </div>
+
+
+                        @if ($persona_extra)
+                            <h4 class="fw-bolder border-bottom pb-50 mt-2 mb-1">Informacion Adicional</h4>
+                            <div class="info-container">
+                                <ul class="list-unstyled">
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">DISTRITO:</span>
+                                        <span>{{ $persona_extra->distrito ?? '' }} </span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">COMUNA:</span>
+                                        <span>{{ $persona_extra->comuna ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">TIPO NUCLEO:</span>
+                                        {{-- <span class="badge bg-light-success">Active</span> --}}
+
+                                        <span class="">{{ $persona_extra->tipo_nucleo ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">ASENTAMIENTO HUMANO:</span>
+                                        <span>{{ $persona_extra->nombre_asentamiento_humano ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">TIPO VIA:</span>
+                                        <span>{{ $persona_extra->tipo_via ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">NOMBRE VIA:</span>
+                                        <span>{{ $persona_extra->nombre_via ?? 'SIN INFORMACIÓN' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">TIPO ORGANIZACIÓN:</span>
+                                        <span>{{ $persona_extra->tipo_organizacion ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25"> TIENE ALGUNA DISCAPACIDAD ?:</span>
+                                        <span>{{ $persona_extra->es_discapacidad ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">GRADO ESTUDIOS:</span>
+                                        <span>{{ $persona_extra->grado_estudios ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">CENTRO DE ESTUDIOS:</span>
+                                        <span>{{ $persona_extra->centro_estudios ?? '' }}</span>
+                                    </li>
+
+
+
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">TIENE LOCAL FISICO ? :</span>
+                                        <span>{{ $persona_extra->es_local_fisico ?? '' }}</span>
+                                    </li>
+                                    <li class="mb-50">
+                                        <span class="fw-bolder me-25">TIENE LICENCIA?:</span>
+                                        <span>{{ $persona_extra->es_licencia ?? '' }}</span>
+                                    </li>
+
+
+
+
+                                </ul>
+                            </div>
+                        @else
+                        @endif
                     </div>
                 </div>
                 <!-- /User Card -->
@@ -137,13 +204,14 @@
                                 DOCUMENTOS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab-justified" data-bs-toggle="pill" href="#profile-justified"
-                                aria-expanded="false">
+                            <a class="nav-link" id="profile-tab-justified" data-bs-toggle="pill"
+                                href="#profile-justified" aria-expanded="false">
 
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-plus-square font-medium-5 me-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-plus-square font-medium-5 me-50">
                                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2">
                                     </rect>
                                     <line x1="12" y1="8" x2="12" y2="16"></line>

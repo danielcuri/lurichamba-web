@@ -307,8 +307,6 @@ class PortalAdministracionController extends Controller
             'nombres' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
             'fecha_registrada' => Carbon::now(),
-
-
             ///SE AGREGO PORQUE AHORA ES DIRECTO
             'fecha_publicacion' => Carbon::now(),
 

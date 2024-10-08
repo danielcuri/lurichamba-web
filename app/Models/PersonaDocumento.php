@@ -27,8 +27,5 @@ class PersonaDocumento extends Model
         
         return $documentos;
     }
-    public function fromDateTime($value)
-    {
-        return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
-    }
+    
 }

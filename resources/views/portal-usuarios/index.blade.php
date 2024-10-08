@@ -73,12 +73,24 @@
                     <div class="card-header border-bottom p-1">
 
                         <div class="head-label">
-                            <h6 class="mb-0">Lista de Usuarios Registrados
+                            <h6 class="mb-0">Lista de Usuario plataforma
                             </h6>
                         </div>
                         <div class="dt-action-buttons text-end">
                             <div class="dt-buttons d-inline-flex">
-
+                                <a class="btn btn-primary btn-toggle-sidebar w-100"
+                                    href="{{ route('usuario-registrado.create') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-plus me-50 font-small-4">
+                                        <line x1="12" y1="5" x2="12" y2="19">
+                                        </line>
+                                        <line x1="5" y1="12" x2="19" y2="12">
+                                        </line>
+                                    </svg>
+                                    <span class="align-middle">Registrar especialidades</span>
+                                </a>
                             </div>
 
 
@@ -263,10 +275,20 @@
 
 
 @section('scripts')
+    @if (session('persona-guardada'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
 
-
-
-
-
-
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Se Registro Satisfactoriamente El Usuario!!'
+            })
+        </script>
+    @endif
 @endsection
