@@ -71,11 +71,12 @@ class Persona extends Authenticatable  implements JWTSubject
 
     //     // $datos = DB::select('select * from personas where id = ?', [$id]);
     //     $datos = Persona::where('id', [$id])->first();
-        
+
     //     return $datos;
     // }
 
-    public function encontrarPersona($id){
+    public function encontrarPersona($id)
+    {
 
         $persona = Persona::find($id);
 
@@ -85,16 +86,19 @@ class Persona extends Authenticatable  implements JWTSubject
 
 
 
-    public function estadosProceso(){
+    public function estadosProceso()
+    {
         return $this->belongsTo(EstadoProceso::class, 'estado_proceso_id');
     }
 
 
-    public function tipoUtilidad(){
+    public function tipoUtilidad()
+    {
         return $this->belongsTo(TipoUtilidad::class, 'tipo_utilidad_id');
     }
 
-    public function tipoDocumento(){
+    public function tipoDocumento()
+    {
         return $this->belongsTo(TipoDocumento::class, 'tipo_documento_id');
     }
     public function documentos()
@@ -105,7 +109,10 @@ class Persona extends Authenticatable  implements JWTSubject
     // {
     //     return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
     // }
-
+    public function publicaciones()
+    {
+        return $this->hasMany(Publicacion::class);
+    }
 
     public function getJWTIdentifier()
     {

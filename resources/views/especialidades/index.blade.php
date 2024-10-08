@@ -137,12 +137,13 @@
 
 
                                         </td>
-                                       
+
                                         <td>
                                             {{ $especialidad->nombres ?? 'No existe descripción.....' }}
                                         </td>
                                         <td>
-                                            <button class="btn {{ $especialidad->estado == '1' ? 'btn-success' : 'btn-danger' }}">
+                                            <button
+                                                class="btn {{ $especialidad->estado == '1' ? 'btn-success' : 'btn-danger' }}">
                                                 {{ $especialidad->estado == '1' ? 'Habilitado' : 'Deshabilitado' }}
 
                                             </button>
@@ -150,15 +151,15 @@
 
                                         <td>
 
-                                            <form action="{{ route('especialidad.destroy', $especialidad) }}" method="POST"
-                                                class="desactivar">
+                                            <form action="{{ route('especialidad.destroy', $especialidad) }}"
+                                                method="POST" class="desactivar">
                                                 @csrf
                                                 @method('DELETE')
 
 
                                                 <a href="#" class="btn btn-primary dt-button create-new"
                                                     data-bs-toggle="modal" data-bs-target="#editEvent"
-                                                    data-id="{{ $especialidad->id }}" 
+                                                    data-id="{{ $especialidad->id }}"
                                                     data-nombres="{{ $especialidad->nombres }}">
                                                     <i data-feather='edit'></i>
 
@@ -178,8 +179,8 @@
                                         {{-- @can('areas.destroy') --}}
                                         <td class="text-center">
                                             <ul class="table-controls">
-                                                <form action="{{ route('especialidad.activar', $especialidad) }}" method="POST"
-                                                    class="activar">
+                                                <form action="{{ route('especialidad.activar', $especialidad) }}"
+                                                    method="POST" class="activar">
                                                     @csrf
                                                     @method('POST')
                                                     <button type="submit"
@@ -197,7 +198,7 @@
 
                             </tbody>
                         </table>
-                        
+
                         <div class="row">
 
                             <div class="col-md-6 mt-1">
@@ -277,8 +278,8 @@
                         </div>
 
 
-                        <form id="editAddForm" class="row gy-1 pt-75 formguardar" action="{{ route('especialidad.store') }}"
-                            method="POST">
+                        <form id="editAddForm" class="row gy-1 pt-75 formguardar"
+                            action="{{ route('especialidad.store') }}" method="POST">
 
                             @csrf
 
@@ -290,7 +291,7 @@
                                     <div class="col-md-12 mt-1">
                                         <label for="nombre" class="form-label">Nombres</label>
 
-                                        <input class="form-control" type="text" name="nombres"  required >
+                                        <input class="form-control" type="text" name="nombres" required>
                                     </div>
                                     {{-- <div class="col-md-12 mt-1">
                                         <label for="estado_actividad" class="form-label">Descripción</label>

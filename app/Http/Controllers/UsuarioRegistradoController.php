@@ -87,10 +87,10 @@ class UsuarioRegistradoController extends Controller
         $tipo_utilidades = TipoUtilidad::get();
 
 
-        $persona_extra = PersonExtraInformation::where('persona_id',$id)->first();
+        $persona_extra = PersonExtraInformation::where('persona_id', $id)->first();
 
 
-        return view('portal-usuarios.show', compact('persona', 'roles', 'tipo_utilidades','persona_extra'));
+        return view('portal-usuarios.show', compact('persona', 'roles', 'tipo_utilidades', 'persona_extra'));
     }
 
     /**
@@ -386,9 +386,11 @@ class UsuarioRegistradoController extends Controller
             'persona_id' => $persona->id,
             'servicio_id' => $servicio_id_input,
             'tipo_servicio_id' => $tipo_servicio->id,
-            'nombres' => $nombre_servicio_input,
-            'descripcion' => $descripcion_servicio_input,
+            'nombres' => strtoupper($nombre_servicio_input),
+            'descripcion' => strtoupper($descripcion_servicio_input),
             'fecha_registrada' => Carbon::now(),
+            'estado_proceso_id' => 2,
+
             ///SE AGREGO PORQUE AHORA ES DIRECTO
             'fecha_publicacion' => Carbon::now(),
         ]);
@@ -400,5 +402,54 @@ class UsuarioRegistradoController extends Controller
 
 
         return redirect()->route('usuario-registrado.index')->with('persona-guardada', 'ok');
+    }
+
+
+    public function verServicios(string $id)
+    {
+
+        $persona = Persona::find($id);
+        $tipo_servicios = TipoServicio::where('estado', 1)->get();
+
+
+        return view('portal-usuarios.servicios.index', compact('persona', 'tipo_servicios'));
+    }
+
+
+    public function guardarServicioPersona(Request $request)
+    {
+
+        $persona_id = $request->input('persona_id');
+
+        $nombre_servicio_input = $request->input('nombre_servicio');
+        $servicio_id_input = $request->input('servicio_id');
+        $descripcion_servicio_input = $request->input('descripcion_servicio');
+        $codigo_aleatorio = Str::random(6);
+        $slug = Str::slug($nombre_servicio_input);
+        $slug_codigo = $slug . "-" . $codigo_aleatorio;
+        $servicio = Servicio::where('id', $servicio_id_input)->first();
+        $tipo_servicio = TipoServicio::where('id', $servicio->tipo_servicio_id)->first();
+        $publicacion = Publicacion::create([
+            'codigo_aleatorio' => $codigo_aleatorio,
+            'slug' => $slug_codigo,
+            'persona_id' => $persona_id,
+            'servicio_id' => $servicio_id_input,
+            'tipo_servicio_id' => $tipo_servicio->id,
+            'nombres' => strtoupper($nombre_servicio_input),
+            'descripcion' => strtoupper($descripcion_servicio_input),
+            'fecha_registrada' => Carbon::now(),
+            'estado_proceso_id' => 2,
+
+            ///SE AGREGO PORQUE AHORA ES DIRECTO
+            'fecha_publicacion' => Carbon::now(),
+        ]);
+
+
+
+
+
+
+
+        return redirect()->route('usuario-registrado.servicios', $persona_id)->with('persona-guardada', 'ok');
     }
 }

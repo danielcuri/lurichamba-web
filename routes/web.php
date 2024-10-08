@@ -135,11 +135,13 @@ Route::resource('admin-servicio',    ServicioController::class)->names('servicio
 
 
 Route::post('admin-usuarios-registrados/guardar', [UsuarioRegistradoController::class, 'guardarPersona'])->name('usuario-registrado.guardarPersona');
+Route::post('admin-usuarios-registrados/guardar-servicio', [UsuarioRegistradoController::class, 'guardarServicioPersona'])->name('usuario-registrado.guardarServicioPersona');
 
 Route::put('admin-usuarios-registrados/{usuario_registrado}/updaterol', [UsuarioRegistradoController::class, 'updaterol'])->name('usuario-registrado.updaterole');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/rechazar-persona', [UsuarioRegistradoController::class, 'rechazarProcesoPersona'])->name('usuario-registrado.rechazarProcesoPersona');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/validar-persona', [UsuarioRegistradoController::class, 'validarProcesoPersona'])->name('usuario-registrado.validarProcesoPersona');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/validar-documento', [UsuarioRegistradoController::class, 'validarProcesoDocumento'])->name('usuario-registrado.validarProcesoDocumento');
+Route::get('admin-usuarios-registrados/{usuario_registrado}/servicios', [UsuarioRegistradoController::class, 'verServicios'])->name('usuario-registrado.servicios');
 Route::resource('admin-usuarios-registrados',    UsuarioRegistradoController::class)->names('usuario-registrado');
 
 Route::put('admin-solicitudes/{solicitud}/rechazar-persona', [SolicitudController::class, 'rechazarProcesoPublicacion'])->name('solicitud.rechazarProcesoPublicacion');

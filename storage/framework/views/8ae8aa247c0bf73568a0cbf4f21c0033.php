@@ -150,6 +150,7 @@
                                     <th>N° Documento</th>
 
                                     <th>Ver Perfil</th>
+                                    <th>Ver Servicios</th>
                                     <th>Estado Proceso</th>
                                     <th>Estado</th>
 
@@ -179,6 +180,16 @@
                                                 Ver Perfil</a>
 
                                         </td>
+                                        <td class="">
+
+                                            <a href="<?php echo e(route('usuario-registrado.servicios', $persona)); ?>"
+                                                class="btn btn-primary " style="">
+
+                                                <i data-feather='eye'></i>
+                                                Servicios</a>
+
+                                        </td>
+
                                         <td class="">
                                             <?php echo e($persona->estadosProceso->nombres); ?>
 
