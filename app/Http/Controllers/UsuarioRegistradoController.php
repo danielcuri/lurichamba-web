@@ -410,9 +410,10 @@ class UsuarioRegistradoController extends Controller
 
         $persona = Persona::find($id);
         $tipo_servicios = TipoServicio::where('estado', 1)->get();
+        $servicios = Servicio::where('estado', 1)->get();
 
 
-        return view('portal-usuarios.servicios.index', compact('persona', 'tipo_servicios'));
+        return view('portal-usuarios.servicios.index', compact('persona', 'tipo_servicios', 'servicios'));
     }
 
 
@@ -451,5 +452,49 @@ class UsuarioRegistradoController extends Controller
 
 
         return redirect()->route('usuario-registrado.servicios', $persona_id)->with('persona-guardada', 'ok');
+    }
+
+    public function actualizarPublicacion(Request $request, string $id)
+    {
+        $publicacion = Publicacion::find($id);
+
+        $request->validate([
+            'edit_servicioid' => 'required|exists:servicios,id',
+            'edit_nombres' => 'required',
+            'edit_descripcion' => 'required'
+        ], [
+            'servicio.required' => 'El campo Servicio es requerido',
+            'servicio.exists' => 'El Servicio seleccionado no es válido',
+            'edit_nombres.required' => 'El campo Nombre es requerido',
+            'edit_descripcion.required' => 'El campo Descripcion es requerido'
+        ]);
+
+
+         $nombre_servicio_input = $request->input('edit_nombres');
+        $servicio_id_input = $request->input('edit_servicioid');
+        $descripcion_servicio_input = $request->input('edit_descripcion');
+
+
+        $codigo_aleatorio = $publicacion->codigo_aleatorio;
+        $slug = Str::slug($nombre_servicio_input);
+        $slug_codigo = $slug . "-" . $codigo_aleatorio;
+
+
+        $servicio = Servicio::where('id', $servicio_id_input)->first();
+        $tipo_servicio = TipoServicio::where('id', $servicio->tipo_servicio_id)->first();
+
+        $publicacion->update([
+            'slug' => $slug_codigo,
+            'servicio_id' => $servicio_id_input,
+            'tipo_servicio_id' => $tipo_servicio->id,
+            'nombres' => strtoupper($nombre_servicio_input),
+            'descripcion' => strtoupper($descripcion_servicio_input),
+            //SE COMENTO PORQUE NO HAY NINGUN PROCESO DE VALIDACION
+
+            //SE VOLVIO HABILITAR 
+            'estado_proceso_id' => 2
+        ]);
+
+        return redirect()->route('usuario-registrado.servicios', $publicacion->persona_id)->with('persona-guardada', 'ok');
     }
 }
