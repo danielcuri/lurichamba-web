@@ -363,6 +363,8 @@ class UsuarioRegistradoController extends Controller
         $persona_extra->es_local_fisico = $es_local_fisico;
         $persona_extra->es_licencia = $es_licencia;
         $persona_extra->persona_id = $persona->id;
+        
+        $persona_extra->numero_ruc = $ruc;
 
         $persona_extra->save();
 
@@ -421,6 +423,16 @@ class UsuarioRegistradoController extends Controller
     {
 
         $persona_id = $request->input('persona_id');
+        $request->validate([
+            'servicio_id' => 'required|exists:servicios,id',
+            'nombre_servicio' => 'required',
+            'descripcion_servicio' => 'required'
+        ], [
+            'servicio_id.required' => 'El campo Servicio es requerido',
+            'servicio_id.exists' => 'El Servicio seleccionado no es válido',
+            'nombre_servicio.required' => 'El campo Nombre es requerido',
+            'descripcion_servicio.required' => 'El campo Descripcion es requerido'
+        ]);
 
         $nombre_servicio_input = $request->input('nombre_servicio');
         $servicio_id_input = $request->input('servicio_id');

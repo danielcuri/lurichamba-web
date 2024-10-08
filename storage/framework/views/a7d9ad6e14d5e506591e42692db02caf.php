@@ -40,7 +40,17 @@
                             </div>
 
                         </div>
-
+                        <?php if($errors->any()): ?>
+                            <div class="alert alert-dismissible alert-danger fade show" role="alert">
+                                <ul class="error-list">
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li class=""><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                                <button type="button" class="btn-close mb-2" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
 
                         <div class="table-responsive">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -285,7 +295,8 @@
                         type: 'get',
                         success: function(res) {
                             $.each(res, function(key, value) {
-                                $('#edit_servicioid').append('<option value="' + value.id +
+                                $('#edit_servicioid').append('<option value="' + value
+                                    .id +
                                     '">' + value.nombres + '</option>');
                             });
                         }

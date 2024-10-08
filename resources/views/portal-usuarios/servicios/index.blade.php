@@ -40,7 +40,17 @@
                             </div>
 
                         </div>
-
+                        @if ($errors->any())
+                            <div class="alert alert-dismissible alert-danger fade show" role="alert">
+                                <ul class="error-list">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close mb-2" data-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
 
                         <div class="table-responsive">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -284,7 +294,8 @@
                         type: 'get',
                         success: function(res) {
                             $.each(res, function(key, value) {
-                                $('#edit_servicioid').append('<option value="' + value.id +
+                                $('#edit_servicioid').append('<option value="' + value
+                                    .id +
                                     '">' + value.nombres + '</option>');
                             });
                         }
