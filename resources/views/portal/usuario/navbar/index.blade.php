@@ -54,18 +54,18 @@
                     </li>
                 @endcan
 
-                @can('documentos.index')
+                <!-- @can('documentos.index')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('portal-admin/mis-documentos') || Request::is('portal-admin/registrar-documentos') ? 'active' : '' }}"
                             href="{{ route('portal-admin.misDocumentos') }}">Mis Documentos</a>
                     </li>
-                @endcan
+                @endcan -->
 
 
                 @can('comentarios-contrata.index')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('portal-admin/cliente-comentarios') ? 'active' : '' }}"
-                            href="{{ route('portal-admin.indexClienteComentarios') }}">Comentarios Pendientes</a>
+                            href="{{ route('portal-admin.indexClienteComentarios') }}">Servicios Solicitados</a>
                     </li>
                 @endcan
 

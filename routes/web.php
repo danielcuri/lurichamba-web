@@ -126,7 +126,7 @@ Route::resource('tipo-servicio',    TipoServicioController::class)->names('tipo-
 Route::get('registrate', [RegistrarController::class, 'index'])->name('registrate.index');
 Route::post('registrate', [RegistrarController::class, 'ofrecerServicio'])->name('registrate.ofrecerServicio');
 Route::post('registrar', [RegistrarController::class, 'contratarServicio'])->name('registrar.contratarServicio');
-
+Route::post('registrarEmprendedor', [RegistrarController::class, 'sendEmailForRequest'])->name('registrar.emprendedor');
 // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 Route::put('admin-servicio/actualizar-imagen/{admin_servicio}', [ServicioController::class, 'actualizarImagen'])->name('servicio.actualizarImagen');

@@ -276,28 +276,31 @@
 
                 <div class="top-registra">
                     <h2 class="text-center text-white texto-categoria top-registra-h" style="font-weight:900">
-                        ¡REGISTRATE AHORA!
+                        ¡REGÍSTRATE AHORA!
                     </h2>
-
-
-
                 </div>
-
                 <div>
                     <h2 class="text-center text-white texto-categoria top-publica-servicio-h" style="font-weight: normal">
                         Y publica tus servicios laborales
                     </h2>
                 </div>
-                
-                
+                <!-- 
+                 -->
 
-                <form class="form-newsletter" action="<?php echo e(route('registrate.index')); ?>" method="GET">
-
+                <form class="form-newsletter" action="<?php echo e(route('registrar.emprendedor')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="input-correo-registrate mt-70">
-                        <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text"
+                        <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="fullname"
+                            placeholder="Nombre Completo">
+                    </div>
+                    <div class="input-correo-registrate mt-20">
+                        <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="cellphone"
+                            placeholder="Telefono">
+                    </div>
+                    <div class="input-correo-registrate mt-20">
+                        <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="email"
                             placeholder="Correo Electrónico">
                     </div>
-
 
 
                     <div class="row justify-content-center mt-4">
@@ -309,21 +312,8 @@
                         </div>
                     </div>
                 </form>
-
             </div>
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
     </section>
 <?php $__env->stopSection(); ?>
 
@@ -976,5 +966,25 @@
         }
     </style>
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php echo $__env->make('portal.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal/menu/index.blade.php ENDPATH**/ ?>
+<?php if(session('guardar')): ?>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 6000,
+        timerProgressBar: true,
+
+    })
+    Toast.fire({
+        icon: 'success',
+        title: 'Se Guardo Satisfactoriamente!!'
+    })
+</script>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('portal.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\laragon\www\pt-mdsjl\resources\views/portal/menu/index.blade.php ENDPATH**/ ?>

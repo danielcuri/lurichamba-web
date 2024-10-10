@@ -33,12 +33,12 @@
                                         <div class="d-grid gap-2 d-md-block">
                                             <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab"
                                                 role="tablist">
-                                                <li class="nav-item" role="presentation">
+                                                <!-- <li class="nav-item" role="presentation">
                                                     <button class="nav-link active d-grid gap-2  btn-lg" id="pills-home-tab"
                                                         data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
                                                         role="tab" aria-controls="pills-home"
                                                         aria-selected="true">OFRECER SERVICIO</button>
-                                                </li>
+                                                </li> -->
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link d-grid gap-2  btn-lg" id="pills-profile-tab"
                                                         data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
@@ -51,7 +51,7 @@
 
                                         <div class="card"
                                             style="box-sizing: border-box; padding: 20px;border: 1px solid #ccc;border-radius: 50px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);">
-                                            <div class="tab-content" id="pills-tabContent">
+                                            <!-- <div class="tab-content" id="pills-tabContent">
                                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                                     aria-labelledby="pills-home-tab">
                                                     <div class="card-body">
@@ -292,9 +292,9 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- aqui -->
-                                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                            <div class="tab-pane" id="pills-profile" role="tabpanel"
                                                 aria-labelledby="pills-profile-tab">
                                                 <div class="card-body">
                                                     <h2 class="section-title text-center mb-15 wow animate__ animate__fadeInUp animated"
@@ -354,7 +354,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-lg-12 col-md-12">
+                                                            <!-- <div class="col-lg-12 col-md-12">
                                                                 <div class="input-style mb-20">
                                                                     <label class="form-label text-lg font-weight-bold mr-3"
                                                                         for="ruc" style="font-weight: bold">*
@@ -364,7 +364,7 @@
                                                                         value="{{ old('ruc') }}" required
                                                                         onkeypress="return solonumeros(event)" />
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
 
                                                             <div class="col-lg-6 col-md-6">
                                                                 <div class="input-style mb-20">

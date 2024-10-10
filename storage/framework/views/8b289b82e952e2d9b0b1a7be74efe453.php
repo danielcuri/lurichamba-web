@@ -233,4 +233,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal/panel.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\laragon\www\pt-mdsjl\resources\views/portal/panel.blade.php ENDPATH**/ ?>

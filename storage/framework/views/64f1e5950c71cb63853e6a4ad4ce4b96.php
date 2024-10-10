@@ -84,10 +84,7 @@
                                 href="<?php echo e(route('usuario-portal.index')); ?>">Dashboard</a></li>
                         <li><a <?php echo e(Request::is('portal-admin/perfil') ? 'active' : ''); ?>
 
-                                href="<?php echo e(route('portal-admin.perfil')); ?>">Perfil</a></li>
-                        <li><a <?php echo e(Request::is('portal-admin/perfil') ? 'active' : ''); ?>
-
-                                href="<?php echo e(route('portal-admin.misDocumentos')); ?>">Mis Documentos</a></li>
+                                href="<?php echo e(route('portal-admin.perfil')); ?>">Perfil</a></li>                    
                         <li>
                             <form action="<?php echo e(route('portal.logout')); ?>" method="POST">
                                 <?php echo csrf_field(); ?>
@@ -141,4 +138,4 @@
 
     </div>
 </div>
-<?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal/mobile-header.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\laragon\www\pt-mdsjl\resources\views/portal/mobile-header.blade.php ENDPATH**/ ?>

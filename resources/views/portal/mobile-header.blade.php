@@ -86,9 +86,7 @@
                         <li><a {{ Request::is('portal-admin') ? 'active' : '' }} aria-current="page"
                                 href="{{ route('usuario-portal.index') }}">Dashboard</a></li>
                         <li><a {{ Request::is('portal-admin/perfil') ? 'active' : '' }}
-                                href="{{ route('portal-admin.perfil') }}">Perfil</a></li>
-                        <li><a {{ Request::is('portal-admin/perfil') ? 'active' : '' }}
-                                href="{{ route('portal-admin.misDocumentos') }}">Mis Documentos</a></li>
+                                href="{{ route('portal-admin.perfil') }}">Perfil</a></li>                    
                         <li>
                             <form action="{{ route('portal.logout') }}" method="POST">
                                 @csrf

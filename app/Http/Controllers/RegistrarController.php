@@ -9,7 +9,8 @@ use App\Models\TipoUtilidad;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Mail\EntrepreneurNotification;
+use Illuminate\Support\Facades\Mail;
 class RegistrarController extends Controller
 {
 
@@ -19,6 +20,40 @@ class RegistrarController extends Controller
         $tipo_utilidad_servicios = TipoUtilidad::where('estado', 1)->get();
 
         return view('registrate.index', compact('tipo_documentos', 'tipo_utilidad_servicios'));
+    }
+
+    public function sendEmailForRequest(Request $request)
+    {
+
+        $request->validate([  // Validación de campos REQUERIDOS
+            'cellphone' => 'required|digits:9',
+            'fullname' => 'required|email',
+            'email' => 'required',     
+        ], [        
+            
+            'cellphone.required' => 'No ha ingresado su número de celular',
+            'cellphone.integer' => 'Su número esta incorrecto',
+            'cellphone.digits' => 'Su número debe tener 9 dígitos',
+            'fullname.required' => 'No ha ingresado sus nombres',            
+            'email.required' => 'No ha ingresado su correo electronico',
+            'email.email' => 'El correo electronico no es valido',
+            'email.unique' => 'Este correo electronico ya se encuentra registrado'           
+
+        ]);
+
+        // $user = User::create($request->all());
+        $data = $request->all();
+        //envio de correo
+        $fullName = trim($data['fullname']);
+        $email = $data['email'];
+        $phoneNumber = $data['cellphone'];
+
+        $datos_email = new EntrepreneurNotification($fullName,$email,$phoneNumber);
+        
+        Mail::to(env('MAIL_USERNAME'))->queue($datos_email);
+
+        //return redirect()->route('principal.index')->with('guardar', 'Solicitud enviada con exito');
+        return redirect()->route('portal-login.index')->with('guardar', 'Usuario creado con éxito');
     }
 
 

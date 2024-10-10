@@ -26,8 +26,8 @@ class Calificacion extends Model
         return $this->belongsTo(Publicacion::class, 'publicacion_id');
     }
 
-    public function fromDateTime($value)
-    {
-        return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
-    }
+    // public function fromDateTime($value)
+    // {
+    //     return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
+    // }
 }

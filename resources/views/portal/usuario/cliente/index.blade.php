@@ -14,7 +14,7 @@
                     <div class="col-lg-8">
                         <div class="sidebar-shadow">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3>Lista de Comentarios</h3>
+                                <h3>Lista de Servicios Solicitados</h3>
 
                             </div>
                             <hr>
