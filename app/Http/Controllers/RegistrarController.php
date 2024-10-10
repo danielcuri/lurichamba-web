@@ -25,10 +25,11 @@ class RegistrarController extends Controller
     public function sendEmailForRequest(Request $request)
     {
 
+
         $request->validate([  // Validación de campos REQUERIDOS
             'cellphone' => 'required|digits:9',
-            'fullname' => 'required|email',
-            'email' => 'required',     
+            'fullname' => 'required',
+            'email' => 'required|email',     
         ], [        
             
             'cellphone.required' => 'No ha ingresado su número de celular',
@@ -50,7 +51,7 @@ class RegistrarController extends Controller
 
         $datos_email = new EntrepreneurNotification($fullName,$email,$phoneNumber);
         
-        Mail::to(env('MAIL_USERNAME'))->queue($datos_email);
+        Mail::to($email)->send($datos_email);
 
         //return redirect()->route('principal.index')->with('guardar', 'Solicitud enviada con exito');
         return redirect()->route('portal-login.index')->with('guardar', 'Usuario creado con éxito');

@@ -18,7 +18,7 @@ class EntrepreneurNotification extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($fullname,$email,$cellphone)
+    public function __construct($fullname, $email, $cellphone)
     {
         $this->fullname  = $fullname;
         $this->email  = $email;
@@ -28,17 +28,17 @@ class EntrepreneurNotification extends Mailable
     /**
      * Get the message envelope.
      */
-    public function envelope(): Envelope
+    /*public function envelope(): Envelope
     {
         return new Envelope(
             subject: 'Solicitud de Registro Emprendedor',
         );
-    }
+    }*/
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    /*public function content(): Content
     {
         return new Content(
             view: 'emails.entrepreneur-notification',
@@ -48,12 +48,19 @@ class EntrepreneurNotification extends Mailable
                 'cellphone' => $this->cellphone,
             ] // Pasar datos a la vista
         );
-    }
+    }*/
+    public function build()
+    {
 
+        $fullname = $this->fullname;
+        $email= $this->email;
+        $cellphone= $this->cellphone;
+        return $this->subject('Solicitud de Registro Emprendedor')
+            ->view('emails.entrepreneur-notification', compact('fullname','email','cellphone')); // Vista del correo (opcional)
+    }
     /**
      * Get the attachments for the message.
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-   
 }

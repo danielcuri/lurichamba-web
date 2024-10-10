@@ -316,15 +316,15 @@
                     @csrf
                     <div class="input-correo-registrate mt-70">
                         <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="fullname"
-                            placeholder="Nombre Completo">
+                            placeholder="Nombre Completo" name="fullname">
                     </div>
                     <div class="input-correo-registrate mt-20">
                         <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="cellphone"
-                            placeholder="Telefono">
+                            placeholder="Telefono" name="cellphone">
                     </div>
                     <div class="input-correo-registrate mt-20">
                         <input type="text" class="form-control rounded-pill py-4 mt-8 mb-3 input-correo-text" id="email"
-                            placeholder="Correo Electrónico">
+                            placeholder="Correo Electrónico" name="email">
                     </div>
 
 
