@@ -14,11 +14,11 @@ class EspecialidadController extends Controller
 
      public function __construct() {
         $this->middleware('auth');
-        $this->middleware('can:especialidades.index')->only('index');
-        $this->middleware('can:especialidades.edit')->only('edit', 'update');
-        $this->middleware('can:especialidades.create')->only('create', 'store');
-        $this->middleware('can:especialidades.show')->only('show');
-        $this->middleware('can:especialidades.destroy')->only('destroy','activar');
+        // $this->middleware('can:especialidades.index')->only('index');
+        // $this->middleware('can:especialidades.edit')->only('edit', 'update');
+        // $this->middleware('can:especialidades.create')->only('create', 'store');
+        // $this->middleware('can:especialidades.show')->only('show');
+        // $this->middleware('can:especialidades.destroy')->only('destroy','activar');
      }
 
 

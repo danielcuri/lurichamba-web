@@ -13,11 +13,11 @@ class ServicioController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:servicios.index')->only('index');
-        $this->middleware('can:servicios.edit')->only('edit', 'update', 'actualizarImagen');
-        $this->middleware('can:servicios.create')->only('create', 'store');
-        $this->middleware('can:servicios.show')->only('show');
-        $this->middleware('can:servicios.destroy')->only('destroy','activar');
+        // $this->middleware('can:servicios.index')->only('index');
+        // $this->middleware('can:servicios.edit')->only('edit', 'update', 'actualizarImagen');
+        // $this->middleware('can:servicios.create')->only('create', 'store');
+        // $this->middleware('can:servicios.show')->only('show');
+        // $this->middleware('can:servicios.destroy')->only('destroy','activar');
     }
 
     public function index(Request $request)

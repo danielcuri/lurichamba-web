@@ -11,11 +11,11 @@ class SolicitudController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
-        $this->middleware('can:solicitudes-publicacion.index')->only('index');
-        $this->middleware('can:solicitudes-publicacion.edit')->only('edit', 'update', 'validarProcesoPublicacion','rechazarProcesoPublicacion');
-        $this->middleware('can:solicitudes-publicacion.create')->only('create', 'store');
-        $this->middleware('can:solicitudes-publicacion.show')->only('show');
-        $this->middleware('can:solicitudes-publicacion.destroy')->only('destroy','activar');
+        // $this->middleware('can:solicitudes-publicacion.index')->only('index');
+        // $this->middleware('can:solicitudes-publicacion.edit')->only('edit', 'update', 'validarProcesoPublicacion','rechazarProcesoPublicacion');
+        // $this->middleware('can:solicitudes-publicacion.create')->only('create', 'store');
+        // $this->middleware('can:solicitudes-publicacion.show')->only('show');
+        // $this->middleware('can:solicitudes-publicacion.destroy')->only('destroy','activar');
     }
     public function index(Request $request)
     {

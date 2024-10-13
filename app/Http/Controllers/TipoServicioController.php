@@ -13,11 +13,11 @@ class TipoServicioController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware('can:tipo-servicios.index')->only('index');
-        $this->middleware('can:tipo-servicios.edit')->only('edit', 'update','actualizarImagen');
-        $this->middleware('can:tipo-servicios.create')->only('create', 'store');
-        $this->middleware('can:tipo-servicios.show')->only('show');
-        $this->middleware('can:tipo-servicios.destroy')->only('destroy','activar');
+        // $this->middleware('can:tipo-servicios.index')->only('index');
+        // $this->middleware('can:tipo-servicios.edit')->only('edit', 'update','actualizarImagen');
+        // $this->middleware('can:tipo-servicios.create')->only('create', 'store');
+        // $this->middleware('can:tipo-servicios.show')->only('show');
+        // $this->middleware('can:tipo-servicios.destroy')->only('destroy','activar');
     }
     public function index(Request $request)
     {

@@ -277,8 +277,8 @@ class AutenticacionController extends Controller
             $phoneNumber = $data['numero_celular'];
 
             $datos_email = new EntrepreneurNotification($fullName,$email,$phoneNumber);
-            
-            Mail::to(env('MAIL_USERNAME'))->queue($datos_email);
+            $email = "paulo.gmsumma@gmail.com";
+            Mail::to($email)->send($datos_email);
           
             return response()->json([
                 'respuesta' => true,

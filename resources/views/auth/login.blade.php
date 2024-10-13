@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>LOGIN | SISME</title>
+    <title>LOGIN | LURICHAMBA</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="/images/sociales.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -102,13 +102,9 @@
 
                             <h2 class="brand-text text-primary ms-1">
                                 <img src="https://i.pinimg.com/736x/02/24/60/02246047585f640d51b78c8956c188ee.jpg" width="40px" height="40px">
-
-                                PORTAL TRABAJO
-                            
-                            
+                                PORTAL LURICHAMBA                          
                             </h2>
                         </a>
-                        
                         <!-- /Brand logo-->
                         <!-- Left Text-->
                         <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
@@ -120,7 +116,7 @@
                         <!-- Login-->
                         <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                                <h2 class="card-title fw-bold mb-1">Bienvenido a PORTAL TRABAJO! 👋</h2>
+                                <h2 class="card-title fw-bold mb-1">Bienvenido al Portal Lurichamba</h2>
                                 <p class="card-text mb-2">Inicia sesión en tu cuenta.</p>
                                 <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                                     @csrf

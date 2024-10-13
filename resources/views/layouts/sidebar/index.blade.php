@@ -40,12 +40,12 @@
 
 
 
-
+<!-- 
         <li class="nav-item {{ Request::is('especialidad') | Request::is('especialidad/*') ? 'active' : '' }}"><a
                 class="d-flex align-items-center" href="{{ route('especialidad.index') }}">
                 <i data-feather='briefcase'></i>
                 <span class="menu-title text-truncate" data-i18n="Chat">Especialidades</span></a>
-        </li>
+        </li> -->
 
 
         <li class="nav-item {{ Request::is('tipo-servicio') | Request::is('tipo-servicio/*') ? 'active' : '' }}"><a
@@ -70,19 +70,19 @@
                 <span class="menu-title text-truncate" data-i18n="Chat">Comentarios</span></a>
         </li>
 
-        <li
+        <!-- <li
             class="nav-item {{ Request::is('admin-solicitudes') | Request::is('admin-solicitudes/*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ route('solicitud.index') }}">
                 <i data-feather='inbox'></i>
                 <span class="menu-title text-truncate" data-i18n="Chat">Solicitudes</span></a>
-        </li>
+        </li> -->
 
         <li
             class="nav-item {{ Request::is('admin-usuarios-registrados') | Request::is('admin-usuarios-registrados/*') ? 'active' : '' }}">
             <a class="d-flex align-items-center" href="{{ route('usuario-registrado.index') }}">
 
                 <i data-feather='user-check'></i>
-                <span class="menu-title text-truncate" data-i18n="Chat">Usuarios Registrados</span></a>
+                <span class="menu-title text-truncate" data-i18n="Chat">Emprendedores</span></a>
         </li>
 
         <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Seguridad</span><i

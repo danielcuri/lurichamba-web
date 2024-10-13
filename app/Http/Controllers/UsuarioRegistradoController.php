@@ -26,11 +26,11 @@ class UsuarioRegistradoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:personas-registradas.index')->only('index');
-        $this->middleware('can:personas-registradas.edit')->only('edit', 'update', 'validarProcesoDocumento', 'validarProcesoPersona', 'rechazarProcesoPersona');
-        $this->middleware('can:personas-registradas.create')->only('create', 'store');
-        $this->middleware('can:personas-registradas.show')->only('show');
-        $this->middleware('can:personas-registradas.destroy')->only('destroy', 'activar');
+        // $this->middleware('can:personas-registradas.index')->only('index');
+        // $this->middleware('can:personas-registradas.edit')->only('edit', 'update', 'validarProcesoDocumento', 'validarProcesoPersona', 'rechazarProcesoPersona');
+        // $this->middleware('can:personas-registradas.create')->only('create', 'store');
+        // $this->middleware('can:personas-registradas.show')->only('show');
+        // $this->middleware('can:personas-registradas.destroy')->only('destroy', 'activar');
     }
 
 
@@ -57,7 +57,7 @@ class UsuarioRegistradoController extends Controller
             $query->where('estado_proceso_id', 1);
         }
 
-        $personas = $query->paginate(5);
+        $personas = $query->orderBy('personas.id','desc')->paginate(10);
         $personas->appends(['search' => $request->input('search'), 'estado_proceso_id' => $request->input('estado_proceso_id')]);
 
         $estados_procesos = EstadoProceso::get();
@@ -181,18 +181,18 @@ class UsuarioRegistradoController extends Controller
         $sexos = ['MASCULINO', 'FEMENINO'];
 
         $distritos = ['LURIGANCHO', 'COMAS'];
-        $comunas = ['COMUNA 01', 'COMUNA 02'];
+        $comunas = ['COMUNA 01', 'COMUNA 02','COMUNA 03','COMUNA 04','COMUNA 05','COMUNA 06','COMUNA 07','COMUNA 08','COMUNA 09','COMUNA 10','COMUNA 11','COMUNA 12','COMUNA 13','COMUNA 14','COMUNA 15','COMUNA 16','COMUNA 17','COMUNA 18'];
 
-        $tipo_nucleos = ['NUCLEO 01', 'NUCLEO 02'];
+        $tipo_nucleos = ['URBANIZCION', 'PUEBLO JOVEN','UNIDAD VECINAL','CONJUNTO HABITACIONAL','ASENTAMIENTO','COOPERATIVA','RESIDENCIAL','GRUPO','CENTRO POBLADO','FUNDO','OTROS'];
 
-        $tipo_vias = ['VIA 01', 'VIA 02'];
+        $tipo_vias = ['AVENIDA', 'JIRON','CALLE','PASAJE','ALAMEDA','MALECON','OVALO','PARQUE','PLAZA','CARRETERA','BLOCK','OTROS'];
 
-        $tipo_organizaciones = ['ORGANIZACION 01', 'ORGANIZACION 02'];
+        $tipo_organizaciones = ['PERSONA NATURAL SIN NEGOCIO'];
 
-        $grados = ['GRADO 01', 'GRADO 02'];
+        $grados = ['PPRIMARIA', 'SECUNDARIA','TECNICO SUPERIOR','UNIVERSITARIO','ESTUDIANTE'];
 
-        $tipo_comprobantes = ['COMPROBANTE 01', 'COMPROBANTE 02'];
-        $tipo_emisiones = ['EMISION 01', 'EMISION 02'];
+        $tipo_comprobantes = ['RECIBO POR HONORARIOS', 'BOLETA','FACTURA','NINGUNO'];
+        $tipo_emisiones = ['FISICO', 'DIGITAL','NINGUNO'];
         $tipo_servicios = TipoServicio::where('estado', 1)->get();
 
         return view(

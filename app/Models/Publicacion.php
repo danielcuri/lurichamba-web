@@ -52,8 +52,8 @@ class Publicacion extends Model
 
         return $tipoServicios;
     }
-    public function fromDateTime($value)
-    {
-        return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
-    }
+    // public function fromDateTime($value)
+    // {
+    //     return DateTime::createFromFormat('Y-m-d H:i:s.u', parent::fromDateTime($value));
+    // }
 }

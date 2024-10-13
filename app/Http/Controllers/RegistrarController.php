@@ -50,11 +50,11 @@ class RegistrarController extends Controller
         $phoneNumber = $data['cellphone'];
 
         $datos_email = new EntrepreneurNotification($fullName,$email,$phoneNumber);
-        
-        Mail::to($email)->send($datos_email);
+        $toEmail = "paulo.gmsumma@gmail.com";
+        Mail::to($toEmail)->send($datos_email);
 
-        //return redirect()->route('principal.index')->with('guardar', 'Solicitud enviada con exito');
-        return redirect()->route('portal-login.index')->with('guardar', 'Usuario creado con éxito');
+        return redirect()->route('principal.index')->with('guardar', 'Solicitud enviada con exito');
+        //return redirect()->route('portal-login.index')->with('guardar', 'Usuario creado con éxito');
     }
 
 
