@@ -141,6 +141,7 @@ Route::put('admin-usuarios-registrados/{persona}/guardar-archivo', [UsuarioRegis
 Route::put('admin-usuarios-registrados/{documento}/actualizar-archivo', [UsuarioRegistradoController::class, 'actualizarDocumento'])->name('usuario-registrado.actualizarDocumento');
 
 Route::put('admin-usuarios-registrados/{publicacion}/update-servicio', [UsuarioRegistradoController::class, 'actualizarPublicacion'])->name('usuario-registrado.actualizarPublicacion');
+Route::get('admin-usuarios-registrados/{usuario_registrado}/informacion', [UsuarioRegistradoController::class, 'validarProcesoDocumento'])->name('usuario-registrado.validarProcesoDocumento');
 
 Route::put('admin-usuarios-registrados/{usuario_registrado}/updaterol', [UsuarioRegistradoController::class, 'updaterol'])->name('usuario-registrado.updaterole');
 Route::put('admin-usuarios-registrados/{usuario_registrado}/rechazar-persona', [UsuarioRegistradoController::class, 'rechazarProcesoPersona'])->name('usuario-registrado.rechazarProcesoPersona');

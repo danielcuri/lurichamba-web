@@ -111,10 +111,11 @@
 
                         <form id="search-form" class="mb-3">
                             <div class="row">
-                              
+
 
                                 <div class="col-md-9 mt-1">
-                                    <label for="" class="form-label">Ingrese nombres y apellidos de la persona</label>
+                                    <label for="" class="form-label">Ingrese nombres y apellidos de la
+                                        persona</label>
 
                                     <input type="text" name="search" id="search-input" class="form-control"
                                         placeholder="Buscar por nombres y apellidos">
@@ -140,6 +141,7 @@
                                     <th>Ver Servicios</th>
                                     <th>Estado Proceso</th>
                                     <th>Estado</th>
+                                    <th></th>
 
                                 </tr>
                             </thead>
@@ -190,6 +192,15 @@
 
 
                                             </button>
+                                        </td>
+                                        <td class="">
+
+                                            <a href="<?php echo e(route('usuario-registrado.edit', $persona)); ?>"
+                                                class="btn btn-primary " style="">
+
+                                                <i data-feather='edit'></i>
+                                                Editar</a>
+
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -272,7 +283,7 @@
 
 
 <?php $__env->startSection('scripts'); ?>
-    <?php if(session('persona-guardada')): ?>
+    <?php if(session('actualizar-documento')): ?>
         <script>
             const Toast = Swal.mixin({
                 toast: true,
@@ -284,10 +295,43 @@
             })
             Toast.fire({
                 icon: 'success',
-                title: 'Se Registro Satisfactoriamente El Usuario!!'
+                title: 'Se actualizo el documento!!'
             })
         </script>
     <?php endif; ?>
+    <?php if(session('guardar-documento')): ?>
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Se guardo el documento!!'
+            })
+        </script>
+    <?php endif; ?>
+
+    <?php if(session('gpersona-actualiza')): ?>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Se actualizo la persona!!'
+        })
+    </script>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal-usuarios/index.blade.php ENDPATH**/ ?>

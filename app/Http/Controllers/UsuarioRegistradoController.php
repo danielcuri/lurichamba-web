@@ -112,7 +112,45 @@ class UsuarioRegistradoController extends Controller
 
     public function edit(string $id)
     {
-        //
+
+        $persona = Persona::find($id);
+
+        $tipo_documentos = TipoDocumento::where('estado', 1)->get();
+        $persona_extra = PersonExtraInformation::where('persona_id', $id)->first();
+
+
+        $sexos = ['MASCULINO', 'FEMENINO'];
+
+        $distritos = ['LURIGANCHO', 'COMAS'];
+        $comunas = ['COMUNA 01', 'COMUNA 02', 'COMUNA 03', 'COMUNA 04', 'COMUNA 05', 'COMUNA 06', 'COMUNA 07', 'COMUNA 08', 'COMUNA 09', 'COMUNA 10', 'COMUNA 11', 'COMUNA 12', 'COMUNA 13', 'COMUNA 14', 'COMUNA 15', 'COMUNA 16', 'COMUNA 17', 'COMUNA 18'];
+
+        $tipo_nucleos = ['URBANIZCION', 'PUEBLO JOVEN', 'UNIDAD VECINAL', 'CONJUNTO HABITACIONAL', 'ASENTAMIENTO', 'COOPERATIVA', 'RESIDENCIAL', 'GRUPO', 'CENTRO POBLADO', 'FUNDO', 'OTROS'];
+
+        $tipo_vias = ['AVENIDA', 'JIRON', 'CALLE', 'PASAJE', 'ALAMEDA', 'MALECON', 'OVALO', 'PARQUE', 'PLAZA', 'CARRETERA', 'BLOCK', 'OTROS'];
+
+        $tipo_organizaciones = ['PERSONA NATURAL SIN NEGOCIO'];
+
+        $grados = ['PPRIMARIA', 'SECUNDARIA', 'TECNICO SUPERIOR', 'UNIVERSITARIO', 'ESTUDIANTE'];
+
+        $tipo_comprobantes = ['RECIBO POR HONORARIOS', 'BOLETA', 'FACTURA', 'NINGUNO'];
+        $tipo_emisiones = ['FISICO', 'DIGITAL', 'NINGUNO'];
+        $tipo_servicios = TipoServicio::where('estado', 1)->get();
+
+        return view('portal-usuarios.edit', compact(
+            'persona',
+            'tipo_documentos',
+            'sexos',
+            'distritos',
+            'tipo_organizaciones',
+            'comunas',
+            'tipo_vias',
+            'tipo_nucleos',
+            'grados',
+            'tipo_comprobantes',
+            'tipo_emisiones',
+            'tipo_servicios',
+            'persona_extra'
+        ));
     }
 
     /**
@@ -120,7 +158,105 @@ class UsuarioRegistradoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+
+        $tipo_documento_id = $request->input('tipo_documento_id');
+        $numero_documento = $request->input('numero_documento');
+        $numero_celular = $request->input('numero_celular');
+        $ruc = $request->input('ruc');
+        $nombres = $request->input('nombres');
+        $apellido_paterno = $request->input('apellido_paterno');
+        $apellido_materno = $request->input('apellido_materno');
+        $direccion_fiscal = $request->input('direccion_fiscal');
+        $email = $request->input('email');
+
+        $persona = Persona::find($id);
+
+        $persona->tipo_documento_id = $tipo_documento_id;
+        $persona->numero_documento = $numero_documento;
+        $persona->numero_celular = $numero_celular;
+        $persona->ruc = $ruc;
+        $persona->nombres = $nombres;
+        $persona->apellido_paterno = $apellido_paterno;
+        $persona->apellido_materno = $apellido_materno;
+        $persona->direccion_fiscal = $direccion_fiscal;
+        $persona->email = $email;
+        $persona->save();
+
+        $distrito = $request->input('distrito');
+        $comuna = $request->input('comuna');
+        $coordenadas_geograficas = $request->input('coordenadas_geograficas');
+        $tipo_nucleo = $request->input('tipo_nucleo');
+        $nombre_asentamiento_humano = $request->input('nombre_asentamiento_humano');
+        $tipo_via = $request->input('tipo_via');
+        $nombre_via = $request->input('nombre_via');
+        $numeracion = $request->input('numeracion');
+        $tipo_organizacion = $request->input('tipo_organizacion');
+        $sexo = $request->input('sexo');
+        $fecha_nacimiento = $request->input('fecha_nacimiento');
+        $es_discapacidad = $request->input('es_discapacidad');
+        $grado_estudios = $request->input('grado_estudios');
+        $centro_estudios = $request->input('centro_estudios');
+        $tipo_comprobante = $request->input('tipo_comprobante');
+        $tipo_emision = $request->input('tipo_emision');
+        $es_local_fisico = $request->input('es_local_fisico');
+        $es_licencia = $request->input('es_licencia');
+
+
+        $persona_extra = PersonExtraInformation::where('persona_id', $id)->first();
+
+        if ($persona_extra) {
+            $persona_extra->distrito = $distrito;
+            $persona_extra->comuna = $comuna;
+            $persona_extra->coordenadas_geograficas = $coordenadas_geograficas;
+            $persona_extra->tipo_nucleo = $tipo_nucleo;
+            $persona_extra->nombre_asentamiento_humano = $nombre_asentamiento_humano;
+            $persona_extra->tipo_via = $tipo_via;
+            $persona_extra->nombre_via = $nombre_via;
+            $persona_extra->numeracion = $numeracion;
+            $persona_extra->tipo_organizacion = $tipo_organizacion;
+            $persona_extra->sexo = $sexo;
+            $persona_extra->fecha_nacimiento = $fecha_nacimiento;
+            $persona_extra->es_discapacidad = $es_discapacidad;
+            $persona_extra->grado_estudios = $grado_estudios;
+            $persona_extra->centro_estudios = $centro_estudios;
+            $persona_extra->tipo_comprobante = $tipo_comprobante;
+            $persona_extra->tipo_emision = $tipo_emision;
+            $persona_extra->es_local_fisico = $es_local_fisico;
+            $persona_extra->es_licencia = $es_licencia;
+            $persona_extra->numero_ruc = $ruc;
+            $persona_extra->save();
+
+        }else{
+
+
+            $persona_extrai = new PersonExtraInformation();
+            $persona_extrai->distrito = $distrito;
+            $persona_extrai->comuna = $comuna;
+            $persona_extrai->coordenadas_geograficas = $coordenadas_geograficas;
+            $persona_extrai->tipo_nucleo = $tipo_nucleo;
+            $persona_extrai->nombre_asentamiento_humano = $nombre_asentamiento_humano;
+            $persona_extrai->tipo_via = $tipo_via;
+            $persona_extrai->nombre_via = $nombre_via;
+            $persona_extrai->numeracion = $numeracion;
+            $persona_extrai->tipo_organizacion = $tipo_organizacion;
+            $persona_extrai->sexo = $sexo;
+            $persona_extrai->fecha_nacimiento = $fecha_nacimiento;
+            $persona_extrai->es_discapacidad = $es_discapacidad;
+            $persona_extrai->grado_estudios = $grado_estudios;
+            $persona_extrai->centro_estudios = $centro_estudios;
+            $persona_extrai->tipo_comprobante = $tipo_comprobante;
+            $persona_extrai->tipo_emision = $tipo_emision;
+            $persona_extrai->es_local_fisico = $es_local_fisico;
+            $persona_extrai->es_licencia = $es_licencia;
+            $persona_extrai->numero_ruc = $ruc;
+            $persona_extra->persona_id = $persona->id;
+            $persona_extrai->save();
+
+        }
+
+        return redirect()->route('usuario-registrado.index')->with('persona-actualiza', 'ok');
+
     }
 
     /**

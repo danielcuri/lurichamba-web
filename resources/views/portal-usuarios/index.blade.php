@@ -145,6 +145,7 @@
                                     <th>Ver Servicios</th>
                                     <th>Estado Proceso</th>
                                     <th>Estado</th>
+                                    <th></th>
 
                                 </tr>
                             </thead>
@@ -193,6 +194,15 @@
                                                 {{ $persona->estado == '1' ? 'Habilitado' : 'Deshabilitado' }}
 
                                             </button>
+                                        </td>
+                                        <td class="">
+
+                                            <a href="{{ route('usuario-registrado.edit', $persona) }}"
+                                                class="btn btn-primary " style="">
+
+                                                <i data-feather='edit'></i>
+                                                Editar</a>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -307,4 +317,21 @@
             })
         </script>
     @endif
+
+    @if (session('gpersona-actualiza'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Se actualizo la persona!!'
+        })
+    </script>
+@endif
 @endsection
