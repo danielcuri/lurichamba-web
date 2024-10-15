@@ -1,6 +1,6 @@
 <div class="navbar-header">
     <ul class="nav navbar-nav flex-row">
-        <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('menu-principal.index') }}">
+        <li class="nav-item me-auto"><a class="navbar-brand" href="<?php echo e(route('menu-principal.index')); ?>">
                 <span class="brand-logo">
 
 
@@ -20,8 +20,8 @@
 
 
 
-        <li class="nav-item {{ Request::is('menu-principal') ? 'active' : '' }}"> <a class="d-flex align-items-center "
-                href="{{ route('menu-principal.index') }}">
+        <li class="nav-item <?php echo e(Request::is('menu-principal') ? 'active' : ''); ?>"> <a class="d-flex align-items-center "
+                href="<?php echo e(route('menu-principal.index')); ?>">
 
                 <i data-feather="home"></i>
                 <span class="menu-title text-truncate" data-i18n="Email">Menú Principal</span></a>
@@ -40,22 +40,22 @@
 
 
 
-        <li class="nav-item {{ Request::is('tipo-servicio') | Request::is('tipo-servicio/*') ? 'active' : '' }}"><a
-                class="d-flex align-items-center" href="{{ route('tipo-servicio.index') }}">
+        <li class="nav-item <?php echo e(Request::is('tipo-servicio') | Request::is('tipo-servicio/*') ? 'active' : ''); ?>"><a
+                class="d-flex align-items-center" href="<?php echo e(route('tipo-servicio.index')); ?>">
                 <i data-feather='cloud-rain'></i>
                 <span class="menu-title text-truncate" data-i18n="Chat">Tipo Servicio</span></a>
         </li>
 
-        <li class="nav-item {{ Request::is('admin-servicio') | Request::is('admin-servicio/*') ? 'active' : '' }}"><a
-                class="d-flex align-items-center" href="{{ route('servicio.index') }}">
+        <li class="nav-item <?php echo e(Request::is('admin-servicio') | Request::is('admin-servicio/*') ? 'active' : ''); ?>"><a
+                class="d-flex align-items-center" href="<?php echo e(route('servicio.index')); ?>">
 
                 <i data-feather='columns'></i>
 
                 <span class="menu-title text-truncate" data-i18n="Chat">Servicios</span></a>
         </li>
         <li
-            class="nav-item {{ Request::is('admin-comentarios') | Request::is('admin-comentarios/*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ route('admin-comentario.index') }}">
+            class="nav-item <?php echo e(Request::is('admin-comentarios') | Request::is('admin-comentarios/*') ? 'active' : ''); ?>">
+            <a class="d-flex align-items-center" href="<?php echo e(route('admin-comentario.index')); ?>">
 
                 <i data-feather='message-circle'></i>
 
@@ -65,8 +65,8 @@
       
 
         <li
-            class="nav-item {{ Request::is('admin-usuarios-registrados') | Request::is('admin-usuarios-registrados/*') ? 'active' : '' }}">
-            <a class="d-flex align-items-center" href="{{ route('usuario-registrado.index') }}">
+            class="nav-item <?php echo e(Request::is('admin-usuarios-registrados') | Request::is('admin-usuarios-registrados/*') ? 'active' : ''); ?>">
+            <a class="d-flex align-items-center" href="<?php echo e(route('usuario-registrado.index')); ?>">
 
                 <i data-feather='user-check'></i>
                 <span class="menu-title text-truncate" data-i18n="Chat">Emprendedores</span></a>
@@ -79,13 +79,13 @@
         <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Seguridad</span></a>
             <ul class="menu-content">
-                <li class="nav-item {{ Request::is('usuario') | Request::is('usuario/*') ? 'active' : '' }}">
-                    <a class="d-flex align-items-center" href="{{ route('usuario.index') }}"><i
+                <li class="nav-item <?php echo e(Request::is('usuario') | Request::is('usuario/*') ? 'active' : ''); ?>">
+                    <a class="d-flex align-items-center" href="<?php echo e(route('usuario.index')); ?>"><i
                             data-feather="circle"></i><span class="menu-item text-truncate"
                             data-i18n="List">Usuarios</span></a>
                 </li>
-                <li class="nav-item {{ Request::is('role') | Request::is('role/*') ? 'active' : '' }}">
-                    <a class="d-flex align-items-center" href="{{ route('role.index') }}"><i
+                <li class="nav-item <?php echo e(Request::is('role') | Request::is('role/*') ? 'active' : ''); ?>">
+                    <a class="d-flex align-items-center" href="<?php echo e(route('role.index')); ?>"><i
                             data-feather="circle"></i><span class="menu-item text-truncate"
                             data-i18n="Preview">Roles</span></a>
                 </li>
@@ -95,3 +95,4 @@
 
     </ul>
 </div>
+<?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/layouts/sidebar/index.blade.php ENDPATH**/ ?>

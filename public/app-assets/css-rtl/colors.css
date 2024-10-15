@@ -356,7 +356,7 @@ input:focus ~ .bg-light {
 }
 
 .alert-primary .alert-link {
-  color : #5E50EE !important;
+  color : #d9b860!important;
 }
 
 .alert-primary .btn-close {
@@ -432,7 +432,7 @@ input:focus ~ .bg-light {
 
 .btn-primary:focus, .btn-primary:active, .btn-primary.active {
   color : #FFFFFF;
-  background-color : #5E50EE !important;
+  background-color : #d9b860!important;
 }
 
 .btn-primary:hover:not(.disabled):not(:disabled) {
@@ -445,7 +445,7 @@ input:focus ~ .bg-light {
 
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary {
   color : #FFFFFF;
-  background-color : #5E50EE !important;
+  background-color : #d9b860!important;
 }
 
 .btn-flat-primary {

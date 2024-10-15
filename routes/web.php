@@ -136,7 +136,9 @@ Route::resource('admin-servicio',    ServicioController::class)->names('servicio
 
 Route::post('admin-usuarios-registrados/guardar', [UsuarioRegistradoController::class, 'guardarPersona'])->name('usuario-registrado.guardarPersona');
 Route::post('admin-usuarios-registrados/guardar-servicio', [UsuarioRegistradoController::class, 'guardarServicioPersona'])->name('usuario-registrado.guardarServicioPersona');
+Route::put('admin-usuarios-registrados/{persona}/guardar-archivo', [UsuarioRegistradoController::class, 'guardarDocumento'])->name('usuario-registrado.guardarDocumento');
 
+Route::put('admin-usuarios-registrados/{documento}/actualizar-archivo', [UsuarioRegistradoController::class, 'actualizarDocumento'])->name('usuario-registrado.actualizarDocumento');
 
 Route::put('admin-usuarios-registrados/{publicacion}/update-servicio', [UsuarioRegistradoController::class, 'actualizarPublicacion'])->name('usuario-registrado.actualizarPublicacion');
 

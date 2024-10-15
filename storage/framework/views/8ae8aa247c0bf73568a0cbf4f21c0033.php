@@ -1,6 +1,4 @@
-@extends('layouts.panel')
-
-@section('header')
+<?php $__env->startSection('header'); ?>
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
@@ -9,7 +7,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="">Menu Principal</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ route('usuario-registrado.index') }}">Usuario Registrados</a>
+                        <li class="breadcrumb-item"><a href="<?php echo e(route('usuario-registrado.index')); ?>">Usuario Registrados</a>
                         </li>
                         <li class="breadcrumb-item active">Lista
                         </li>
@@ -61,8 +59,8 @@
             </div>
         </div>
     </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <section id="basic-datatable">
         <div class="row">
             <div class="col-12">
@@ -79,7 +77,7 @@
                         <div class="dt-action-buttons text-end">
                             <div class="dt-buttons d-inline-flex">
                                 <a class="btn btn-primary btn-toggle-sidebar w-100"
-                                    href="{{ route('usuario-registrado.create') }}">
+                                    href="<?php echo e(route('usuario-registrado.create')); ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -97,29 +95,26 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- <div class="alert alert-primary" role="alert">
-                            <div class="alert-body"><strong>Good Morning!</strong> Start your day with some alerts.</div>
-                        </div> --}}
+                        
 
-                        @if ($errors->any())
+                        <?php if($errors->any()): ?>
                             <div class="alert alert-dismissible alert-danger fade show" role="alert">
                                 <ul class="error-list">
-                                    @foreach ($errors->all() as $error)
-                                        <li class="">{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li class=""><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <button type="button" class="btn-close mb-2" data-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                         <form id="search-form" class="mb-3">
                             <div class="row">
-
+                              
 
                                 <div class="col-md-9 mt-1">
-                                    <label for="" class="form-label">Ingrese nombres y apellidos de la
-                                        persona</label>
+                                    <label for="" class="form-label">Ingrese nombres y apellidos de la persona</label>
 
                                     <input type="text" name="search" id="search-input" class="form-control"
                                         placeholder="Buscar por nombres y apellidos">
@@ -137,7 +132,7 @@
                         <table id="result-table" class="table table-responsive  datatables-basic dtr-column collapsed ">
                             <thead>
                                 <tr>
-                                    {{-- <th></th> --}}
+                                    
                                     <th>Nombres y Apellidos</th>
                                     <th>N° Documento</th>
 
@@ -150,22 +145,22 @@
                             </thead>
                             <tbody id="result-table">
 
-                                @foreach ($personas as $persona)
+                                <?php $__currentLoopData = $personas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $persona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        {{-- <td>
-                                            <a href="" class="btn btn-success"></a>
-                                        </td> --}}
+                                        
 
                                         <td>
-                                            {{ strtoupper($persona->nombres) }} {{ strtoupper($persona->apellido_paterno) }}
-                                            {{ $persona->apellido_materno }}
+                                            <?php echo e(strtoupper($persona->nombres)); ?> <?php echo e(strtoupper($persona->apellido_paterno)); ?>
+
+                                            <?php echo e($persona->apellido_materno); ?>
+
 
                                         </td>
-                                        <td>{{ $persona->numero_documento }}</td>
+                                        <td><?php echo e($persona->numero_documento); ?></td>
 
                                         <td class="">
 
-                                            <a href="{{ route('usuario-registrado.show', $persona) }}"
+                                            <a href="<?php echo e(route('usuario-registrado.show', $persona)); ?>"
                                                 class="btn btn-warning " style="">
 
                                                 <i data-feather='eye'></i>
@@ -174,7 +169,7 @@
                                         </td>
                                         <td class="">
 
-                                            <a href="{{ route('usuario-registrado.servicios', $persona) }}"
+                                            <a href="<?php echo e(route('usuario-registrado.servicios', $persona)); ?>"
                                                 class="btn btn-primary " style="">
 
                                                 <i data-feather='eye'></i>
@@ -183,19 +178,21 @@
                                         </td>
 
                                         <td class="">
-                                            {{ $persona->estadosProceso->nombres }}
+                                            <?php echo e($persona->estadosProceso->nombres); ?>
+
                                         </td>
 
 
                                         <td>
                                             <button
-                                                class="btn {{ $persona->estado == '1' ? 'btn-success' : 'btn-danger' }}">
-                                                {{ $persona->estado == '1' ? 'Habilitado' : 'Deshabilitado' }}
+                                                class="btn <?php echo e($persona->estado == '1' ? 'btn-success' : 'btn-danger'); ?>">
+                                                <?php echo e($persona->estado == '1' ? 'Habilitado' : 'Deshabilitado'); ?>
+
 
                                             </button>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                             </tbody>
@@ -206,8 +203,8 @@
                             <div class="col-md-6 mt-1">
 
                                 <div id="result-info" class="dataTables_info">
-                                    Mostrando {{ $personas->firstItem() }} a {{ $personas->lastItem() }} de
-                                    {{ $personas->total() }} registros
+                                    Mostrando <?php echo e($personas->firstItem()); ?> a <?php echo e($personas->lastItem()); ?> de
+                                    <?php echo e($personas->total()); ?> registros
                                 </div>
 
                             </div>
@@ -216,41 +213,41 @@
                             <div class="col-md-6">
                                 <div id="result-pagination" class="dataTables_paginate">
                                     <ul class="pagination justify-content-end">
-                                        <li class="page-item {{ $personas->previousPageUrl() ? '' : 'disabled' }}">
-                                            <a class="page-link" href="{{ $personas->previousPageUrl() }}">Anterior</a>
+                                        <li class="page-item <?php echo e($personas->previousPageUrl() ? '' : 'disabled'); ?>">
+                                            <a class="page-link" href="<?php echo e($personas->previousPageUrl()); ?>">Anterior</a>
                                         </li>
 
-                                        @if ($personas->currentPage() > 3)
+                                        <?php if($personas->currentPage() > 3): ?>
                                             <li class="page-item">
-                                                <a class="page-link" href="{{ $personas->url(1) }}">1</a>
+                                                <a class="page-link" href="<?php echo e($personas->url(1)); ?>">1</a>
                                             </li>
-                                            @if ($personas->currentPage() > 4)
+                                            <?php if($personas->currentPage() > 4): ?>
                                                 <li class="page-item disabled">
                                                     <span class="page-link">...</span>
                                                 </li>
-                                            @endif
-                                        @endif
+                                            <?php endif; ?>
+                                        <?php endif; ?>
 
-                                        @foreach ($personas->getUrlRange(max($personas->currentPage() - 2, 1), min($personas->currentPage() + 2, $personas->lastPage())) as $page => $url)
-                                            <li class="page-item {{ $page == $personas->currentPage() ? 'active' : '' }}">
-                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        <?php $__currentLoopData = $personas->getUrlRange(max($personas->currentPage() - 2, 1), min($personas->currentPage() + 2, $personas->lastPage())); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li class="page-item <?php echo e($page == $personas->currentPage() ? 'active' : ''); ?>">
+                                                <a class="page-link" href="<?php echo e($url); ?>"><?php echo e($page); ?></a>
                                             </li>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                        @if ($personas->currentPage() < $personas->lastPage() - 2)
-                                            @if ($personas->currentPage() < $personas->lastPage() - 3)
+                                        <?php if($personas->currentPage() < $personas->lastPage() - 2): ?>
+                                            <?php if($personas->currentPage() < $personas->lastPage() - 3): ?>
                                                 <li class="page-item disabled">
                                                     <span class="page-link">...</span>
                                                 </li>
-                                            @endif
+                                            <?php endif; ?>
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                    href="{{ $personas->url($personas->lastPage()) }}">{{ $personas->lastPage() }}</a>
+                                                    href="<?php echo e($personas->url($personas->lastPage())); ?>"><?php echo e($personas->lastPage()); ?></a>
                                             </li>
-                                        @endif
+                                        <?php endif; ?>
 
-                                        <li class="page-item {{ $personas->nextPageUrl() ? '' : 'disabled' }}">
-                                            <a class="page-link" href="{{ $personas->nextPageUrl() }}">Siguiente</a>
+                                        <li class="page-item <?php echo e($personas->nextPageUrl() ? '' : 'disabled'); ?>">
+                                            <a class="page-link" href="<?php echo e($personas->nextPageUrl()); ?>">Siguiente</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -271,11 +268,11 @@
 
     </section>
     <!--/ Basic table -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('scripts')
-    @if (session('actualizar-documento'))
+<?php $__env->startSection('scripts'); ?>
+    <?php if(session('persona-guardada')): ?>
         <script>
             const Toast = Swal.mixin({
                 toast: true,
@@ -287,24 +284,10 @@
             })
             Toast.fire({
                 icon: 'success',
-                title: 'Se actualizo el documento!!'
+                title: 'Se Registro Satisfactoriamente El Usuario!!'
             })
         </script>
-    @endif
-    @if (session('guardar-documento'))
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
 
-            })
-            Toast.fire({
-                icon: 'success',
-                title: 'Se guardo el documento!!'
-            })
-        </script>
-    @endif
-@endsection
+<?php echo $__env->make('layouts.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal-usuarios/index.blade.php ENDPATH**/ ?>

@@ -8,6 +8,7 @@ use App\Models\PersonaDocumento;
 use App\Models\PersonExtraInformation;
 use App\Models\Publicacion;
 use App\Models\Servicio;
+use App\Models\TipoDocumentacion;
 use App\Models\TipoDocumento;
 use App\Models\TipoServicio;
 use App\Models\TipoUtilidad;
@@ -47,17 +48,9 @@ class UsuarioRegistradoController extends Controller
             });
         }
 
+        $query->where('estado_proceso_id', 2);
 
-        // Filtro por estado de proceso
-        if ($request->has('estado_proceso_id')) {
-            $estadoProcesoId = $request->input('estado_proceso_id');
-            $query->where('estado_proceso_id', $estadoProcesoId);
-        } elseif (!$request->has('search')) {
-            // Condición para el inicio: estado_proceso_id igual a 1 cuando no hay parámetros de búsqueda
-            $query->where('estado_proceso_id', 1);
-        }
-
-        $personas = $query->orderBy('personas.id','desc')->paginate(10);
+        $personas = $query->orderBy('personas.id', 'desc')->paginate(10);
         $personas->appends(['search' => $request->input('search'), 'estado_proceso_id' => $request->input('estado_proceso_id')]);
 
         $estados_procesos = EstadoProceso::get();
@@ -86,11 +79,12 @@ class UsuarioRegistradoController extends Controller
         $roles = Role::where('guard_name', 'personas')->get();
         $tipo_utilidades = TipoUtilidad::get();
 
+        $tipo_documentacions = TipoDocumentacion::where('estado', 1)->get();
 
         $persona_extra = PersonExtraInformation::where('persona_id', $id)->first();
 
 
-        return view('portal-usuarios.show', compact('persona', 'roles', 'tipo_utilidades', 'persona_extra'));
+        return view('portal-usuarios.show', compact('persona', 'roles', 'tipo_utilidades', 'persona_extra', 'tipo_documentacions'));
     }
 
     /**
@@ -181,18 +175,18 @@ class UsuarioRegistradoController extends Controller
         $sexos = ['MASCULINO', 'FEMENINO'];
 
         $distritos = ['LURIGANCHO', 'COMAS'];
-        $comunas = ['COMUNA 01', 'COMUNA 02','COMUNA 03','COMUNA 04','COMUNA 05','COMUNA 06','COMUNA 07','COMUNA 08','COMUNA 09','COMUNA 10','COMUNA 11','COMUNA 12','COMUNA 13','COMUNA 14','COMUNA 15','COMUNA 16','COMUNA 17','COMUNA 18'];
+        $comunas = ['COMUNA 01', 'COMUNA 02', 'COMUNA 03', 'COMUNA 04', 'COMUNA 05', 'COMUNA 06', 'COMUNA 07', 'COMUNA 08', 'COMUNA 09', 'COMUNA 10', 'COMUNA 11', 'COMUNA 12', 'COMUNA 13', 'COMUNA 14', 'COMUNA 15', 'COMUNA 16', 'COMUNA 17', 'COMUNA 18'];
 
-        $tipo_nucleos = ['URBANIZCION', 'PUEBLO JOVEN','UNIDAD VECINAL','CONJUNTO HABITACIONAL','ASENTAMIENTO','COOPERATIVA','RESIDENCIAL','GRUPO','CENTRO POBLADO','FUNDO','OTROS'];
+        $tipo_nucleos = ['URBANIZCION', 'PUEBLO JOVEN', 'UNIDAD VECINAL', 'CONJUNTO HABITACIONAL', 'ASENTAMIENTO', 'COOPERATIVA', 'RESIDENCIAL', 'GRUPO', 'CENTRO POBLADO', 'FUNDO', 'OTROS'];
 
-        $tipo_vias = ['AVENIDA', 'JIRON','CALLE','PASAJE','ALAMEDA','MALECON','OVALO','PARQUE','PLAZA','CARRETERA','BLOCK','OTROS'];
+        $tipo_vias = ['AVENIDA', 'JIRON', 'CALLE', 'PASAJE', 'ALAMEDA', 'MALECON', 'OVALO', 'PARQUE', 'PLAZA', 'CARRETERA', 'BLOCK', 'OTROS'];
 
         $tipo_organizaciones = ['PERSONA NATURAL SIN NEGOCIO'];
 
-        $grados = ['PPRIMARIA', 'SECUNDARIA','TECNICO SUPERIOR','UNIVERSITARIO','ESTUDIANTE'];
+        $grados = ['PPRIMARIA', 'SECUNDARIA', 'TECNICO SUPERIOR', 'UNIVERSITARIO', 'ESTUDIANTE'];
 
-        $tipo_comprobantes = ['RECIBO POR HONORARIOS', 'BOLETA','FACTURA','NINGUNO'];
-        $tipo_emisiones = ['FISICO', 'DIGITAL','NINGUNO'];
+        $tipo_comprobantes = ['RECIBO POR HONORARIOS', 'BOLETA', 'FACTURA', 'NINGUNO'];
+        $tipo_emisiones = ['FISICO', 'DIGITAL', 'NINGUNO'];
         $tipo_servicios = TipoServicio::where('estado', 1)->get();
 
         return view(
@@ -306,6 +300,8 @@ class UsuarioRegistradoController extends Controller
             $documento_persona_discapacidad->persona_id = $persona->id;
             $documento_persona_discapacidad->tipo_documentacion_id = 5;
             $documento_persona_discapacidad->url_documento = $ruta_archivo_discapacidad;
+            $documento_persona_discapacidad->estado_proceso_id = 2;
+
             $documento_persona_discapacidad->save();
         }
 
@@ -315,6 +311,8 @@ class UsuarioRegistradoController extends Controller
             $documento_persona_file_estudio->persona_id = $persona->id;
             $documento_persona_file_estudio->tipo_documentacion_id = 6;
             $documento_persona_file_estudio->url_documento = $ruta_file_estudio;
+            $documento_persona_file_estudio->estado_proceso_id = 2;
+
             $documento_persona_file_estudio->save();
         }
         if ($file_certificado_unico) {
@@ -323,6 +321,7 @@ class UsuarioRegistradoController extends Controller
             $documento_persona_file_certificado_unico->persona_id = $persona->id;
             $documento_persona_file_certificado_unico->tipo_documentacion_id = 1;
             $documento_persona_file_certificado_unico->url_documento = $ruta_file_certificado_unico;
+            $documento_persona_file_certificado_unico->estado_proceso_id = 2;
             $documento_persona_file_certificado_unico->save();
         }
         if ($file_ficha_ruc) {
@@ -331,6 +330,9 @@ class UsuarioRegistradoController extends Controller
             $documento_persona_file_ficha_ruc->persona_id = $persona->id;
             $documento_persona_file_ficha_ruc->tipo_documentacion_id = 7;
             $documento_persona_file_ficha_ruc->url_documento = $ruta_file_ficha_ruc;
+
+            $documento_persona_file_ficha_ruc->estado_proceso_id = 2;
+
             $documento_persona_file_ficha_ruc->save();
         }
 
@@ -339,6 +341,8 @@ class UsuarioRegistradoController extends Controller
             $documento_persona_file_licencia = new PersonaDocumento();
             $documento_persona_file_licencia->persona_id = $persona->id;
             $documento_persona_file_licencia->tipo_documentacion_id = 8;
+            $documento_persona_file_licencia->estado_proceso_id = 2;
+
             $documento_persona_file_licencia->url_documento = $ruta_file_licencia;
             $documento_persona_file_licencia->save();
         }
@@ -363,7 +367,7 @@ class UsuarioRegistradoController extends Controller
         $persona_extra->es_local_fisico = $es_local_fisico;
         $persona_extra->es_licencia = $es_licencia;
         $persona_extra->persona_id = $persona->id;
-        
+
         $persona_extra->numero_ruc = $ruc;
 
         $persona_extra->save();
@@ -482,7 +486,7 @@ class UsuarioRegistradoController extends Controller
         ]);
 
 
-         $nombre_servicio_input = $request->input('edit_nombres');
+        $nombre_servicio_input = $request->input('edit_nombres');
         $servicio_id_input = $request->input('edit_servicioid');
         $descripcion_servicio_input = $request->input('edit_descripcion');
 
@@ -508,5 +512,69 @@ class UsuarioRegistradoController extends Controller
         ]);
 
         return redirect()->route('usuario-registrado.servicios', $publicacion->persona_id)->with('persona-guardada', 'ok');
+    }
+
+    public function guardarDocumento(Persona $persona, Request $request)
+    {
+
+        $request->validate(
+            [
+                'tipo_documentacion_id' => 'required', // Campo de archivo requerido
+
+                'documento' => 'required|file|mimes:pdf|max:1024', // Campo de archivo requerido
+
+            ],
+            [
+                'tipo_documentacion_id.required' => 'Seleccione un Tipo De Documentación',
+
+                'documento.required' => 'El archivo es requerido',
+                'documento.mimes' => 'El archivo debe ser de tipo PDF',
+                'documento.max' => 'El archivo debe pesar menos de 1MB',
+
+            ]
+
+        );
+
+        $ruta = Storage::put('public/documento_persona', $request->file('documento'));
+
+        $documento_persona = PersonaDocumento::create([
+            'persona_id' => $persona->id,
+            'tipo_documentacion_id' => $request->input('tipo_documentacion_id'),
+            'url_documento' => $ruta,
+        ]);
+
+
+        return redirect()->back()->with('guardar-documento', 'actualizar');
+    }
+
+    public function actualizarDocumento(Request $request, PersonaDocumento $documento)
+    {
+        $request->validate([
+            'documento' => 'required|mimes:pdf|max:1024',
+        ], [
+            'documento.required' => 'El PDF es requerida',
+            'documento.mimes' => 'El documento debe ser tipo "pdf"',
+            'documento.max' => 'El peso máximo de la foto debe ser de 1MB'
+        ]);
+
+        if ($request->file('documento')) {
+
+
+
+
+            $ruta = Storage::put('public/documento_persona', $request->file('documento'));
+            // $persona->foto = $ruta;
+            // $persona->save();
+            if ($documento->url_documento) {
+                Storage::delete($documento->url_documento);
+                $documento->url_documento = $ruta;
+                $documento->save();
+            } else {
+                $documento->url_documento = $ruta;
+                $documento->save();
+            }
+        }
+
+        return redirect()->back()->with('actualizar-documento', 'actualizar');
     }
 }

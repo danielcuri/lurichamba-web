@@ -1,8 +1,4 @@
-@extends('layouts.panel')
-
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="app-user-view-account">
         <div class="row">
             <!-- User Sidebar -->
@@ -13,26 +9,26 @@
                         <div class="user-avatar-section">
                             <div class="d-flex align-items-center flex-column">
 
-                                @if ($persona->estado_proceso_id == 2)
+                                <?php if($persona->estado_proceso_id == 2): ?>
                                     <div>
                                         <span class="badge badge-glow bg-warning me-1 mt-1">VALIDADO A PORTAL</span>
                                     </div>
-                                @else
-                                @endif
+                                <?php else: ?>
+                                <?php endif; ?>
 
 
-                                @if ($persona->profile_photo_path)
+                                <?php if($persona->profile_photo_path): ?>
                                     <img class="img-fluid rounded mt-3 mb-2"
-                                        src="{{ Storage::url($persona->profile_photo_path) }}" height="110" width="110"
+                                        src="<?php echo e(Storage::url($persona->profile_photo_path)); ?>" height="110" width="110"
                                         alt="User avatar">
-                                @else
+                                <?php else: ?>
                                     <h1 class="mt-1">SIN FOTO</h1>
                                     <img class="img-fluid rounded mt-3 mb-2" src="/sinfoto.png" height="110"
                                         width="110" alt="User avatar">
-                                @endif
+                                <?php endif; ?>
                                 <div class="user-info text-center">
-                                    <h4>{{ $persona->nombres }} {{ $persona->apellido_paterno }}</h4>
-                                    <span class="badge bg-light-secondary">{{ $persona->tipoUtilidad->nombres }}</span>
+                                    <h4><?php echo e($persona->nombres); ?> <?php echo e($persona->apellido_paterno); ?></h4>
+                                    <span class="badge bg-light-secondary"><?php echo e($persona->tipoUtilidad->nombres); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -42,34 +38,35 @@
                             <ul class="list-unstyled">
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Nombres:</span>
-                                    <span>{{ $persona->nombres }} {{ $persona->apellido_paterno }}
-                                        {{ $persona->apellido_materno }}</span>
+                                    <span><?php echo e($persona->nombres); ?> <?php echo e($persona->apellido_paterno); ?>
+
+                                        <?php echo e($persona->apellido_materno); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Correo:</span>
-                                    <span>{{ $persona->email }}</span>
+                                    <span><?php echo e($persona->email); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Estado Proceso:</span>
-                                    {{-- <span class="badge bg-light-success">Active</span> --}}
+                                    
 
-                                    <span class="">{{ $persona->estadosProceso->nombres }}</span>
+                                    <span class=""><?php echo e($persona->estadosProceso->nombres); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Tipo Documento:</span>
-                                    <span>{{ $persona->tipoDocumento->siglas }}</span>
+                                    <span><?php echo e($persona->tipoDocumento->siglas); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Documento:</span>
-                                    <span>{{ $persona->numero_documento }}</span>
+                                    <span><?php echo e($persona->numero_documento); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Celular:</span>
-                                    <span>{{ $persona->numero_celular ?? 'SIN INFORMACIÓN' }}</span>
+                                    <span><?php echo e($persona->numero_celular ?? 'SIN INFORMACIÓN'); ?></span>
                                 </li>
                                 <li class="mb-75">
                                     <span class="fw-bolder me-25">Dirección:</span>
-                                    <span>{{ $persona->direccion_fiscal }}</span>
+                                    <span><?php echo e($persona->direccion_fiscal); ?></span>
                                 </li>
 
                             </ul>
@@ -77,62 +74,62 @@
                         </div>
 
 
-                        @if ($persona_extra)
+                        <?php if($persona_extra): ?>
                             <h4 class="fw-bolder border-bottom pb-50 mt-2 mb-1">Informacion Adicional</h4>
                             <div class="info-container">
                                 <ul class="list-unstyled">
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">DISTRITO:</span>
-                                        <span>{{ $persona_extra->distrito ?? '' }} </span>
+                                        <span><?php echo e($persona_extra->distrito ?? ''); ?> </span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">COMUNA:</span>
-                                        <span>{{ $persona_extra->comuna ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->comuna ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">TIPO NUCLEO:</span>
-                                        {{-- <span class="badge bg-light-success">Active</span> --}}
+                                        
 
-                                        <span class="">{{ $persona_extra->tipo_nucleo ?? '' }}</span>
+                                        <span class=""><?php echo e($persona_extra->tipo_nucleo ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">ASENTAMIENTO HUMANO:</span>
-                                        <span>{{ $persona_extra->nombre_asentamiento_humano ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->nombre_asentamiento_humano ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">TIPO VIA:</span>
-                                        <span>{{ $persona_extra->tipo_via ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->tipo_via ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">NOMBRE VIA:</span>
-                                        <span>{{ $persona_extra->nombre_via ?? 'SIN INFORMACIÓN' }}</span>
+                                        <span><?php echo e($persona_extra->nombre_via ?? 'SIN INFORMACIÓN'); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">TIPO ORGANIZACIÓN:</span>
-                                        <span>{{ $persona_extra->tipo_organizacion ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->tipo_organizacion ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25"> TIENE ALGUNA DISCAPACIDAD ?:</span>
-                                        <span>{{ $persona_extra->es_discapacidad ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->es_discapacidad ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">GRADO ESTUDIOS:</span>
-                                        <span>{{ $persona_extra->grado_estudios ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->grado_estudios ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">CENTRO DE ESTUDIOS:</span>
-                                        <span>{{ $persona_extra->centro_estudios ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->centro_estudios ?? ''); ?></span>
                                     </li>
 
 
 
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">TIENE LOCAL FISICO ? :</span>
-                                        <span>{{ $persona_extra->es_local_fisico ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->es_local_fisico ?? ''); ?></span>
                                     </li>
                                     <li class="mb-50">
                                         <span class="fw-bolder me-25">TIENE LICENCIA?:</span>
-                                        <span>{{ $persona_extra->es_licencia ?? '' }}</span>
+                                        <span><?php echo e($persona_extra->es_licencia ?? ''); ?></span>
                                     </li>
 
 
@@ -140,8 +137,8 @@
 
                                 </ul>
                             </div>
-                        @else
-                        @endif
+                        <?php else: ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <!-- /User Card -->
@@ -217,13 +214,13 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($persona->documentos as $documento)
+                                                        <?php $__currentLoopData = $persona->documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr class="odd">
-                                                                <td>{{ $documento->tipoDocumentacion->nombres }}</td>
+                                                                <td><?php echo e($documento->tipoDocumentacion->nombres); ?></td>
                                                                 <td>
 
                                                                     <button class="btn btn-success"
-                                                                        data-url="{{ Storage::url($documento->url_documento) }}"
+                                                                        data-url="<?php echo e(Storage::url($documento->url_documento)); ?>"
                                                                         onclick="mostrarVistaPrevia(this)">
 
                                                                         <svg class="icon-32" width="32"
@@ -267,14 +264,14 @@
                                                                         class="btn btn-primary documento-edit"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#editDocumento"
-                                                                        data-id="{{ $documento->id }}">
+                                                                        data-id="<?php echo e($documento->id); ?>">
 
                                                                         <i data-feather='edit'></i>
 
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                     </tbody>
                                                 </table>
@@ -288,36 +285,37 @@
 
                                 <div class="tab-pane" id="profile-justified" role="tabpanel"
                                     aria-labelledby="profile-tab-justified" aria-expanded="false">
-                                    @if ($errors->any())
+                                    <?php if($errors->any()): ?>
                                         <div class="alert alert-danger inverse alert-dismissible fade show"
                                             role="alert">
                                             <i class="icon-alert"></i>
                                             <p><b>¡Ups! Algo salió mal..</b> Por favor verifique las siguientes
                                                 validaciones :</p>
                                             <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
+                                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <li><?php echo e($error); ?></li>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                             <button class="btn-close" type="button" data-bs-dismiss="alert"
                                                 aria-label="Close"></button>
                                         </div>
-                                    @endif
-                                    <form action="{{ route('usuario-registrado.guardarDocumento', $persona->id) }}"
+                                    <?php endif; ?>
+                                    <form action="<?php echo e(route('usuario-registrado.guardarDocumento', $persona->id)); ?>"
                                         enctype="multipart/form-data" method="POST">
-                                        @csrf
-                                        @method('PUT')
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('PUT'); ?>
                                         <div class="col-md-12 mt-1">
                                             <label for="" class="form-label fw-bolder">Tipo Documentación</label>
                                             <select name="tipo_documentacion_id" class="form-select"
                                                 id="tipo_documentacion_id">
                                                 <option value="" selected disabled>Seleccione una opción
                                                 </option>
-                                                @foreach ($tipo_documentacions as $tipo_documentacion)
-                                                    <option value="{{ $tipo_documentacion->id }}">
-                                                        {{ $tipo_documentacion->nombres }}
+                                                <?php $__currentLoopData = $tipo_documentacions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documentacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($tipo_documentacion->id); ?>">
+                                                        <?php echo e($tipo_documentacion->nombres); ?>
+
                                                     </option>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="col-md-12 mt-1">
@@ -359,15 +357,15 @@
             </div>
         </div>
 
-        @include('portal-usuarios.modal')
+        <?php echo $__env->make('portal-usuarios.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('scripts')
-    @if (session('persona-guardada'))
+<?php $__env->startSection('scripts'); ?>
+    <?php if(session('persona-guardada')): ?>
         <script>
             const Toast = Swal.mixin({
                 toast: true,
@@ -382,7 +380,7 @@
                 title: 'Se Registro Satisfactoriamente El Usuario!!'
             })
         </script>
-    @endif
+    <?php endif; ?>
 
     <script>
         function mostrarVistaPrevia(button) {
@@ -404,7 +402,7 @@
 
 
                 $('#modalEditDoc').modal('show');
-                var actionUrl = "{{ route('usuario-registrado.actualizarDocumento', ':id') }}";
+                var actionUrl = "<?php echo e(route('usuario-registrado.actualizarDocumento', ':id')); ?>";
                 actionUrl = actionUrl.replace(':id', id);
                 $('#editActualizarDoc').attr('action', actionUrl);
 
@@ -512,4 +510,6 @@
 
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\lurichamba-web\resources\views/portal-usuarios/show.blade.php ENDPATH**/ ?>

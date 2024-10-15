@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="sidebar-shadow">
-                         {{-- <div class="d-flex justify-content-between align-items-center">
+                        {{-- <div class="d-flex justify-content-between align-items-center">
                             <h4>Mis Documentos</h4>
                             @if ($cantidad_documento_otros < 1)
                                 <a href="{{ route('portal-admin.registrar-documentos') }}" class="btn btn-success">REGISTRAR
@@ -19,19 +19,20 @@
                             @endif
                         </div> 
                         --}}
-                        
-                      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
                             <h4 class="text-center mb-3 mb-sm-0">Mis Documentos</h4>
-                        
+
                             <div class="text-center">
                                 @if ($cantidad_documento_otros < 1)
-                                    <a href="{{ route('portal-admin.registrar-documentos') }}" class="btn btn-success">REGISTRAR CURRÍCULUM</a>
+                                    <a href="{{ route('portal-admin.registrar-documentos') }}"
+                                        class="btn btn-success">REGISTRAR CURRÍCULUM</a>
                                 @endif
 
-                                
+
                             </div>
                         </div>
-                        
+
                         <h6 class="card-header">Documentos Adjuntos</h6>
                         <div class="table-responsive" class="mt-5">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -134,6 +135,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </section>
 @endsection
 @section('scripts')
@@ -145,4 +149,8 @@
             $('#preview-modal').modal('show');
         }
     </script>
+
+
+
+
 @endsection
