@@ -426,6 +426,94 @@ class UsuarioRegistradoController extends Controller
 
     public function guardarPersona(Request $request)
     {
+        $request->validate([
+            'tipo_documento_id' => 'required|exists:tipo_documentos,id',
+            'numero_documento' => 'required|max:15|unique:personas,numero_documento',
+            'numero_celular' => 'required|min:9|max:15',
+            'ruc' => 'required|size:11|unique:personas,ruc',
+            'nombres' => 'required|max:255',
+            'apellido_paterno' => 'required|max:255',
+            'apellido_materno' => 'required|max:255',
+            'direccion_fiscal' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:personas,email,',
+
+            'distrito' => 'required',
+            'comuna' => 'required',
+            'coordenadas_geograficas' => 'required',
+            'tipo_nucleo' => 'required',
+            'nombre_asentamiento_humano' => 'required',
+            'tipo_via' => 'required',
+            'nombre_via' => 'required',
+            'numeracion' => 'required',
+            'tipo_organizacion' => 'required',
+            'sexo' => 'required', // Ejemplo con valores posibles para sexo
+            'fecha_nacimiento' => 'required|date',
+            'es_discapacidad' => 'required',
+            'grado_estudios' => 'required',
+            'centro_estudios' => 'required',
+            'tipo_comprobante' => 'required',
+            'tipo_emision' => 'required',
+            'es_local_fisico' => 'required',
+            'es_licencia' => 'required',
+
+            'nombre_servicio' => 'required',
+            'servicio_id' => 'required',
+            'descripcion_servicio' => 'required',
+
+
+        ], [
+            'tipo_documento_id.required' => 'El tipo de documento es obligatorio.',
+            'tipo_documento_id.exists' => 'El tipo de documento seleccionado no es válido.',
+            'numero_documento.required' => 'El número de documento es obligatorio.',
+            'numero_documento.max' => 'El número de documento no debe exceder los 15 caracteres.',
+            'numero_documento.unique' => 'El número de documento ya está registrado.',
+            'numero_celular.required' => 'El número de celular es obligatorio.',
+            'numero_celular.min' => 'El número de celular debe tener al menos 9 caracteres.',
+            'numero_celular.max' => 'El número de celular no debe exceder los 15 caracteres.',
+            'ruc.required' => 'El RUC es obligatorio.',
+            'ruc.size' => 'El RUC debe tener exactamente 11 caracteres.',
+            'ruc.unique' => 'El RUC ya está registrado.',
+            'nombres.required' => 'Los nombres son obligatorios.',
+            'nombres.max' => 'Los nombres no deben exceder los 255 caracteres.',
+            'apellido_paterno.required' => 'El apellido paterno es obligatorio.',
+            'apellido_paterno.max' => 'El apellido paterno no debe exceder los 255 caracteres.',
+            'apellido_materno.required' => 'El apellido materno es obligatorio.',
+            'apellido_materno.max' => 'El apellido materno no debe exceder los 255 caracteres.',
+            'direccion_fiscal.required' => 'La dirección fiscal es obligatoria.',
+            'direccion_fiscal.max' => 'La dirección fiscal no debe exceder los 255 caracteres.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+
+            'distrito.required' => 'El distrito es obligatorio.',
+            'comuna.required' => 'La comuna es obligatoria.',
+            'coordenadas_geograficas.required' => 'Las coordenadas geográficas son obligatorias.',
+            'tipo_nucleo.required' => 'El tipo de núcleo es obligatorio.',
+            'nombre_asentamiento_humano.required' => 'El nombre del asentamiento humano es obligatorio.',
+            'tipo_via.required' => 'El tipo de vía es obligatorio.',
+            'nombre_via.required' => 'El nombre de la vía es obligatorio.',
+            'numeracion.required' => 'La numeración es obligatoria.',
+            'tipo_organizacion.required' => 'El tipo de organización es obligatorio.',
+            'sexo.required' => 'El sexo es obligatorio.',
+            'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria.',
+            'fecha_nacimiento.date' => 'La fecha de nacimiento no es válida.',
+            'es_discapacidad.required' => 'El campo de discapacidad es obligatorio.',
+            'grado_estudios.required' => 'El grado de estudios es obligatorio.',
+            'centro_estudios.required' => 'El centro de estudios es obligatorio.',
+            'tipo_comprobante.required' => 'El tipo de comprobante es obligatorio.',
+            'tipo_emision.required' => 'El tipo de emisión es obligatorio.',
+            'es_local_fisico.required' => 'El campo Si tiene local fisico es obligatorio.',
+            'es_licencia.required' => 'El campo Si tiene local licencia es obligatorio.',
+
+            'nombre_servicio.required' => 'El campo titulo del servicio es obligatorio.',
+            'servicio_id.required' => 'Seleccione un servicio es obligatorio.',
+            'descripcion_servicio.required' => 'El campo descripcion del servicio es obligatorio.',
+
+        ]);
+
+
+
+
 
 
         $tipo_utilidad_id = $request->input('tipo_utilidad_id') ?? 1;
